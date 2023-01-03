@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/index.jsx"],
+  "sourcesContent": ["export default function Home() {\r\n  //   const data = useLoaderData();\r\n  const headPhones = data.data.data.headphones;\r\n  const laptops = data.data.data.laptops;\r\n  return (\r\n    <>\r\n      <div>ken</div>\r\n    </>\r\n  );\r\n}\r\n"],
+  "mappings": ";;;;;;AAAA;AAAe,SAAR,OAAwB;AAE7B,QAAM,aAAa,KAAK,KAAK,KAAK;AAClC,QAAM,UAAU,KAAK,KAAK,KAAK;AAC/B,SACE;AAAA,IACE,6DAAC;AAAA,MAAI;AAAA,OAAL;AAAA;AAAA;AAAA;AAAA,WAAQ;AAAA,KADV;AAAA;AAAA;AAAA;AAAA,SAEA;AAEJ;",
+  "names": []
+}

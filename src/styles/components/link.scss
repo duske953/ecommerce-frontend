@@ -1,0 +1,88 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+.anchor:link,
+.anchor:visited {
+  text-decoration: none;
+  color: v.$primary-dark-color;
+  @include m.smallTextFont(1.8rem);
+  display: inline-block;
+}
+
+.btn {
+  @include m.general-btn;
+  &__form {
+    align-self: flex-start;
+    background-color: v.$primary-blue-color;
+    padding: 1.2rem 4.4rem;
+    text-transform: uppercase;
+    @include m.smallTextFont(1.8rem);
+    color: v.$primary-text-color;
+  }
+
+  &__primary-button {
+    background-color: v.$primary-blue-color;
+    padding: 1.2rem 3.6rem;
+    color: v.$primary-text-color;
+    margin-top: 1.6rem;
+    @include m.smallTextFont(1.8rem);
+    border-radius: 4px;
+    align-self: baseline;
+  }
+
+  &__input-box {
+    position: absolute;
+    right: 0.5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: v.$primary-blue-color;
+    color: v.$primary-text-color;
+    padding: 1.4rem 4.4rem;
+    border-radius: 100px;
+    @include m.smallTextFont(1.6rem);
+
+    @media (max-width: v.$media-break-4) {
+      position: relative;
+      margin-top: 4.2rem;
+    }
+  }
+}
+
+.pagination-btn {
+  background-color: v.$secondary-blue-color;
+  @include m.Flex(center, space-between);
+  width: 18rem;
+  font-size: 1.6rem;
+  color: v.$primary-text-color;
+  border-radius: 100px;
+  border: none;
+  font-family: inherit;
+  margin-top: 2.4rem;
+  & a:link,
+  & a:visited {
+    padding: 1.2rem 1rem;
+    cursor: pointer;
+    color: v.$primary-text-color;
+    text-decoration: none;
+    font-size: 1.8rem;
+  }
+
+  & a:first-child:link,
+  & a:visited:visited {
+    border-right: 1px solid v.$primary-dark-color;
+  }
+
+  & a:last-child:link,
+  & a:last-child:visited {
+    border-left: 1px solid v.$primary-dark-color;
+  }
+}
+
+.featured-products__button:link,
+.featured-products__button:visited {
+  background-color: v.$primary-blue-color;
+  color: v.$primary-text-color;
+  padding: 1.2rem 3.4rem;
+  font-size: 1.8rem;
+  border-radius: 9px;
+  text-transform: uppercase;
+}

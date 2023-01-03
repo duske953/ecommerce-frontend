@@ -1,0 +1,48 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+.product-card {
+  position: relative;
+  background-color: v.$primary-text-color;
+  border-radius: 9px;
+
+  &__detail {
+    font-size: 1.8rem;
+    line-height: 1.6;
+  }
+
+  &__details {
+    width: 100%;
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0 1rem 1.4rem 1rem;
+  }
+
+  &__img {
+    width: v.$primary-img-width;
+    object-fit: contain;
+    height: 25rem;
+    border-bottom: 1px solid #ced4da;
+    padding: 0.8rem 1.8rem;
+  }
+
+  &__rating {
+    @include m.Flex(center);
+    gap: 1.2rem;
+    & p {
+      @include m.smallTextFont(1.6rem);
+    }
+  }
+
+  &__price {
+    @include m.smallTextFont(1.6rem);
+    color: #74c0fc;
+  }
+
+  &__link:link,
+  &__link:visited {
+    text-decoration: none;
+    color: v.$primary-dark-color;
+  }
+}

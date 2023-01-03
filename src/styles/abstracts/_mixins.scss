@@ -1,0 +1,29 @@
+@mixin page-width() {
+  max-width: 150rem;
+  margin: 0 auto;
+}
+
+@mixin general-btn() {
+  background: none;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+@mixin Grid($colums) {
+  display: grid;
+  grid-template-columns: $colums;
+  align-items: center;
+}
+
+@mixin Flex($align: initial, $jusitfy: initial) {
+  display: flex;
+  align-items: $align;
+  justify-content: $jusitfy;
+}
+
+@mixin smallTextFont($size) {
+  font-size: $size;
+  font-weight: 500;
+}

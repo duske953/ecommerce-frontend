@@ -1,0 +1,80 @@
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+.section-cart {
+  padding: 1.2rem 1.2rem 4.4rem 1.2rem;
+  &__container {
+    @include m.page-width;
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+  }
+
+  &__card {
+    @include m.Flex(center, space-around);
+    background-color: #f1f3f5;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    padding: 1.2rem;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+
+    @media (max-width: v.$media-break-6) {
+      width: 100%;
+      padding: 2.6rem 1rem;
+    }
+  }
+
+  &__details {
+    @include m.Flex(center);
+    gap: 1.2rem;
+  }
+
+  &__img {
+    height: 10.5rem;
+  }
+
+  &__title {
+    @include m.smallTextFont(1.6rem);
+    color: v.$primary-dark-color;
+    margin-bottom: 0.4rem;
+  }
+
+  &__id {
+    font-size: 1.2rem;
+  }
+
+  &__category {
+    @include m.smallTextFont(1.8rem);
+    color: v.$primary-dark-color;
+  }
+
+  &__price {
+    @include m.smallTextFont(1.6rem);
+    color: v.$primary-dark-color;
+  }
+
+  &__action {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    gap: 1.2rem;
+    font-size: 3rem;
+  }
+
+  &__cancel {
+    fill: red;
+    cursor: pointer;
+  }
+
+  &__good {
+    fill: green;
+  }
+}
+
+// .payment-element {
+//   max-width: 60rem;
+//   margin: auto;
+//   padding: 5.4rem 1.2rem;
+// }

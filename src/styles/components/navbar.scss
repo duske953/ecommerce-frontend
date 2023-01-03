@@ -1,0 +1,182 @@
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+.navbar-section {
+  // position: relative;
+  padding: 2.4rem 1.2rem;
+  border-bottom: 1px solid #777;
+  &__header {
+    @include m.Flex(center, space-between);
+    @include m.page-width;
+    @media (max-width: v.$media-break-4) {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+  }
+
+  &__box {
+    @media (max-width: v.$media-break-4) {
+      width: 100%;
+    }
+  }
+
+  &__box ul {
+    @include m.Flex(center);
+    list-style-type: none;
+    gap: 6.4rem;
+    @media (max-width: v.$media-break-2) {
+      gap: 4.5rem;
+    }
+
+    @media (max-width: v.$media-break-4) {
+      justify-content: space-around;
+      gap: 0.4rem;
+    }
+  }
+  &__sign:link,
+  &__sign:visited {
+    background-color: v.$primary-blue-color;
+    color: v.$primary-text-color !important;
+    padding: 1.2rem 2.4rem;
+  }
+  &__logo {
+    font: {
+      size: 2.4rem;
+      weight: 500;
+    }
+    text-transform: uppercase;
+    color: v.$primary-dark-color;
+  }
+  &__user:link,
+  &__user:visited {
+    @include m.Flex(center);
+    text-decoration: none;
+    color: #333;
+
+    & img {
+      width: 3.4rem;
+      height: 3.4rem;
+      border-radius: 50%;
+    }
+
+    & p {
+      @include m.smallTextFont(1.4rem);
+    }
+  }
+
+  &__cart:link,
+  &__cart:visited {
+    font-size: 2.6rem;
+  }
+
+  &__nav-icon {
+    font-size: 4.4rem;
+    cursor: pointer;
+  }
+
+  &__btn-logout {
+    font-size: 1.8rem;
+    color: v.$primary-dark-color;
+    font-weight: 500;
+  }
+
+  &__nav-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #f8f9fa;
+    height: 100vh;
+    z-index: 1000;
+    width: 25%;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+    transform: translateX(-100%);
+
+    @media (max-width: v.$media-break-3) {
+      width: 35%;
+    }
+
+    @media (max-width: v.$media-break-5) {
+      width: 50%;
+    }
+
+    @media (max-width: v.$media-break-6) {
+      width: 75%;
+    }
+
+    &--active {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+      transform: translateX(0);
+    }
+  }
+
+  &__heading-box {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+  }
+
+  &__nav-box {
+    list-style: none;
+    position: relative;
+  }
+
+  &__nav-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 3.6rem;
+    padding: 1rem;
+  }
+
+  &__nav-heading {
+    display: inline-block;
+    color: v.$primary-dark-color;
+    font-size: 2.4rem;
+    font-weight: 500;
+    margin: 1rem;
+    // margin: 1.2rem 1rem;
+    // padding: 1.2rem 0.6rem;
+    border-bottom: 2px solid #333;
+    padding: 0.4rem;
+  }
+
+  &__nav-close {
+    top: 3%;
+    position: absolute;
+    right: 0;
+    font-size: 4.4rem;
+    cursor: pointer;
+  }
+
+  &__nav-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+    visibility: hidden;
+    pointer-events: none;
+    cursor: pointer;
+    background-image: linear-gradient(
+      to left,
+      rgba(0, 0, 0),
+      rgba(0, 0, 9, 0.13)
+    );
+
+    &--active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      z-index: 900;
+    }
+  }
+}

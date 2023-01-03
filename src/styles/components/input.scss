@@ -1,0 +1,49 @@
+@use "../abstracts/variables" as v;
+
+.input {
+  width: 75%;
+  padding: 1.2rem;
+  border-radius: 9px;
+  outline: none;
+  font-family: inherit;
+  font: {
+    family: inherit;
+    size: 2rem;
+  }
+  @media (max-width: v.$media-break-4) {
+    width: 100%;
+  }
+}
+
+.input-box {
+  position: relative;
+}
+
+.label {
+  display: block;
+  font: {
+    size: 1.4rem;
+    weight: 500;
+  }
+  margin-bottom: 1.2rem;
+}
+
+.input-comp {
+  width: 35%;
+
+  @media (max-width: v.$media-break-4) {
+    width: 100%;
+  }
+}
+
+.input-comp input {
+  font-family: inherit;
+  font-size: 1.8rem;
+}
+
+// input file type style
+
+.input-file {
+  font-size: 1.6rem !important;
+  font-family: inherit !important;
+}

@@ -1,0 +1,1 @@
+window.__remixManifest={"version":"06e1487d","entry":{"module":"/build/entry.client-CJ6L6TSV.js","imports":["/build/_shared/chunk-VG6F67SX.js"]},"routes":{"root":{"id":"root","path":"","module":"/build/root-7QN2LQTR.js","hasAction":false,"hasLoader":false,"hasCatchBoundary":false,"hasErrorBoundary":false}},"url":"/build/manifest-06E1487D.js"};

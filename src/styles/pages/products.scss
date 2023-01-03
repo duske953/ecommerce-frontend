@@ -1,0 +1,82 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+.featured-products {
+  padding: v.$general-padding;
+  position: relative;
+
+  &__container {
+    @include m.page-width;
+    gap: 3.4rem;
+  }
+
+  &__section-box {
+    background-color: #f8f9fa;
+    padding: v.$general-padding;
+  }
+
+  &__products {
+    @include m.Grid(1fr 1fr 1fr 1fr);
+    column-gap: 3.4rem;
+    row-gap: 4.4rem;
+
+    @media (max-width: v.$media-break-3) {
+      @include m.Grid(1fr 1fr 1fr);
+    }
+
+    @media (max-width: v.$media-break-4) {
+      @include m.Grid(1fr 1fr);
+      column-gap: 1.4rem;
+    }
+
+    @media (max-width: v.$media-break-6) {
+      @include m.Grid(1fr);
+    }
+  }
+
+  &__btn-box {
+    text-align: center !important;
+    margin-top: 4.4rem;
+  }
+}
+
+.section-details {
+  padding: v.$general-padding;
+
+  &__container {
+    @include m.page-width;
+    display: flex;
+    position: relative;
+  }
+  &__box {
+    background-image: #000;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+  }
+
+  &__heading {
+    font-size: 3.4rem;
+    text-align: center;
+    margin-bottom: 1.4rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    color: #333;
+    line-height: 1.4;
+    width: 70%;
+
+    @media (max-width: v.$media-break-4) {
+      font-size: 2.4rem;
+    }
+
+    @media (max-width: v.$media-break-6) {
+      font-size: 1.9rem;
+      width: 100%;
+    }
+  }
+}

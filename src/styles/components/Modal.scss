@@ -1,0 +1,15 @@
+@use "../abstracts/variables" as v;
+
+.popup-content {
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 3.6rem;
+  width: 75%;
+
+  @media (max-width: v.$media-break-5) {
+    width: 95%;
+  }
+}
+
+.popup-overlay {
+}

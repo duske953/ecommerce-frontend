@@ -1,0 +1,50 @@
+@use "../abstracts/variables" as v;
+
+.section-payment {
+  border-bottom: 1px solid #555;
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    max-width: 150rem;
+    margin: 0 auto;
+    padding: 5.4rem 2.4rem;
+    gap: 4.4rem;
+
+    @media (max-width: v.$media-break-5) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__img-box {
+    text-align: center;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #555;
+    align-items: center;
+    padding: 0.7rem 0;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    color: #555;
+    font-size: 3.6rem;
+  }
+
+  &__price {
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: #333;
+  }
+
+  &__img {
+    object-fit: scale-down;
+  }
+}
+
+.StripeElement {
+  margin-bottom: 2.2rem;
+}

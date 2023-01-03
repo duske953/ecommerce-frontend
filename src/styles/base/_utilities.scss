@@ -1,0 +1,198 @@
+@use "../abstracts/variables" as v;
+.m-bottom-sm {
+  margin-bottom: 2rem;
+}
+
+.acc-info {
+  position: absolute;
+  right: 4%;
+  top: 2%;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+
+  @media (max-width: v.$media-break-4) {
+    left: 0.6rem;
+    right: initial;
+    top: 4%;
+  }
+
+  @media (max-width: v.$media-break-5) {
+    right: 0.8rem;
+    left: initial;
+  }
+
+  &__btn:link,
+  &__btn:visited {
+    border: 1px solid #555;
+    border-radius: 100px;
+    padding: 1.2rem 3.6rem;
+
+    @media (max-width: v.$media-break-4) {
+      padding: 1.2rem 2.4rem;
+    }
+  }
+
+  & p {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+}
+
+.err-input {
+  position: absolute;
+  font-size: 1.2rem;
+  margin-top: -2rem;
+  color: #c92a2a;
+  text-transform: uppercase;
+  font-weight: 500;
+  bottom: -2rem;
+}
+
+.featured-products__heading {
+  display: inline-block;
+  color: #222;
+  border-bottom: 3px solid #777;
+  margin-bottom: 3rem;
+  z-index: 10;
+}
+
+.section-cart__heading {
+  text-align: center;
+  padding: 3rem 0 4.5rem 0;
+  font-size: 4.5rem;
+}
+
+// .product-info__heading {
+//   font-size: 2.4rem;
+//   line-height: 1.6;
+//   margin-bottom: 2rem;
+// }
+
+.searched-err {
+  font-size: 6.4rem;
+  text-align: center;
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.g-container {
+  max-width: 150rem;
+  padding: 0 1.2rem;
+}
+
+.u-err {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+
+  & img {
+    width: 75%;
+    @media (max-width: v.$media-break-5) {
+      width: 100%;
+    }
+  }
+
+  & .message {
+    font-size: 5.4rem;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
+.abs-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.p-lg {
+  font-size: 4.5rem;
+  font-weight: 500;
+  color: #333;
+  width: 100%;
+}
+
+.activate-tag {
+  font-size: 6rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.u-index {
+  font-size: 5.4rem;
+  color: #333;
+  width: 100%;
+
+  @media (max-width: v.$media-break-4) {
+    font-size: 4.4rem;
+  }
+}
+
+.u-active-index {
+  width: 100%;
+}
+
+.u-active-box {
+  @media (max-width: v.$media-break-4) {
+    padding: 1.4rem;
+    height: 75vh;
+  }
+}
+
+.c-mark {
+  font-size: 2.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.payment-success_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-forgot__password {
+  text-align: center;
+}
+
+.g-input-box {
+  padding: 10rem 5rem;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+
+  & button {
+    margin-top: 3rem;
+  }
+
+  & input:last-child {
+    margin-top: 1rem;
+  }
+
+  & h1 {
+    font-size: 3.6rem;
+    color: #333;
+  }
+}
+
+.upload-box {
+  text-align: center;
+  margin-top: 1rem;
+
+  & p {
+    font-size: 1.6rem;
+  }
+
+  & button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}

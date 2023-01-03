@@ -1,0 +1,31 @@
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+.features-section {
+  padding: v.$general-padding;
+  &__container {
+    @include m.page-width;
+  }
+  &__box {
+    @include m.Flex(center, space-around);
+    gap: 2.4rem;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    display: flex;
+    gap: 1.2rem;
+    border: 1px solid #ced4da;
+    padding: 0.6rem 5.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  &__details {
+    font-size: 1.4rem;
+  }
+}

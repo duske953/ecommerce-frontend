@@ -1,0 +1,40 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+.section-form {
+  padding: 5.4rem 1.2rem;
+  background: linear-gradient(to right, #6190e8, #a7bfe8);
+  &__container {
+    @include m.page-width;
+  }
+
+  &__form {
+    @include m.Grid(1fr 1fr);
+    background-color: v.$primary-text-color;
+    padding: 4.4rem;
+    gap: 1.2rem;
+    border-radius: 9px;
+    position: relative;
+
+    @media (max-width: v.$media-break-4) {
+      padding: 1.4rem 1rem;
+    }
+
+    @media (max-width: v.$media-break-5) {
+      @include m.Grid(1fr);
+    }
+  }
+
+  &__img {
+    width: v.$primary-img-width;
+
+    @media (max-width: v.$media-break-5) {
+      display: none;
+    }
+  }
+
+  &__input {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}

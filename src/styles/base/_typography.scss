@@ -1,0 +1,27 @@
+@use "../abstracts/variables" as v;
+.primary-heading {
+  font-size: 4.4rem;
+  line-height: 1.3;
+  color: v.$primary-dark-color;
+
+  @media (max-width: v.$media-break-1) {
+    font-size: 3.8rem;
+  }
+
+  @media (max-width: v.$media-break-2) {
+    font-size: 3.6rem;
+    padding-bottom: 1rem;
+  }
+
+  @media (max-width: v.$media-break-6) {
+    font-size: 3rem;
+  }
+}
+
+.secondary-heading {
+  font-size: 3.6rem;
+  color: v.$primary-dark-color;
+  @media (max-width: v.$media-break-3) {
+    font-size: 3rem;
+  }
+}

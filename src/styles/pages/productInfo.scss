@@ -1,0 +1,127 @@
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+.product-info {
+  padding: v.$general-padding;
+  border-bottom: 1px solid #222;
+  &__container {
+    @include m.page-width;
+    @include m.Grid(1fr 1fr);
+    align-items: center !important;
+    position: relative;
+    justify-content: center;
+    gap: 4.5rem;
+    @media (max-width: v.$media-break-4) {
+      @include m.Grid(1fr);
+    }
+  }
+
+  &__category {
+    @include m.smallTextFont(1.8rem);
+    margin-bottom: 2rem;
+    color: v.$primary-blue-color;
+    text-transform: uppercase;
+  }
+
+  &__img-box {
+    height: 100%;
+    text-align: center;
+    position: relative;
+    @media (max-width: v.$media-break-4) {
+      padding-bottom: 1.4rem;
+    }
+
+    & img {
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 1.2rem;
+      object-fit: scale-down;
+      z-index: -1;
+
+      @media (max-width: v.$media-break-4) {
+        transform: translate(0, 0);
+        width: initial;
+        max-width: 50%;
+        height: 35rem;
+        object-fit: scale-down;
+        position: initial;
+      }
+
+      @media (max-width: v.$media-break-6) {
+        max-width: 80%;
+      }
+    }
+  }
+
+  &__rating-box {
+    @include m.Flex(center);
+    gap: 1.8rem;
+  }
+
+  &__rating {
+    @include m.smallTextFont(1.8rem);
+  }
+
+  &__price {
+    @include m.smallTextFont(2.4rem);
+    color: v.$primary-dark-color;
+    margin-top: 2rem;
+  }
+
+  &__details {
+    @media (max-width: v.$media-break-4) {
+      text-align: center;
+    }
+  }
+
+  &__details-about {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  &__details-list {
+    display: flex;
+    gap: 1.6rem;
+    font-size: 1.6rem;
+
+    & p:first-child {
+      font-weight: 500;
+    }
+  }
+
+  &__details-box {
+    @include m.page-width;
+    @include m.Grid(2fr 1fr);
+    gap: 9.5rem;
+    align-items: initial;
+    margin-top: 7.5rem;
+  }
+
+  &__details-heading {
+    text-align: center;
+    @include m.smallTextFont(2.4rem);
+    margin-bottom: 1.2rem;
+    color: v.$primary-dark-color;
+    border-bottom: 1px solid v.$secondary-dark-color;
+    display: inline-block;
+  }
+
+  &__heading {
+    font-size: 2.4rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+
+    @media (max-width: v.$media-break-3) {
+      @include m.smallTextFont(2rem);
+    }
+  }
+
+  &__details-description {
+    font-size: 1.6rem;
+    line-height: 1.7;
+  }
+}
