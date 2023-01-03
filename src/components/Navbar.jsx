@@ -4,7 +4,7 @@ import { useUser } from "../hooks/swrhook";
 import { ButtonLink, Button } from "./Button";
 import { Logout } from "../utilities/utility";
 import { useSWRConfig } from "swr";
-import SearchField from "react-search-field";
+// import SearchField from "react-search-field";
 import { BsCart } from "react-icons/bs";
 import { BsList } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
@@ -60,12 +60,12 @@ export default function Navbar() {
           <p className="navbar-section__logo">Tech-Freak</p>
         </div>
 
-        <SearchField
+        {/* <SearchField
           placeholder="Search tech..."
           classNames="input-comp"
           onEnter={handleInputEvent}
           onSearchClick={handleInputEvent}
-        />
+        /> */}
 
         <nav className="navbar-section__box">
           <ul>
