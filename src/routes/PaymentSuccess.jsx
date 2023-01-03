@@ -2,7 +2,6 @@ import { useLoaderData } from "react-router-dom";
 import { useSWRConfig } from "swr";
 import Err404 from "../components/Err404";
 import Title from "../components/Title";
-import AnimatedCheckmark, { MODES } from "react-animated-checkmark";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 export default function PaymentSuccess() {
@@ -28,12 +27,6 @@ export default function PaymentSuccess() {
       <Navbar />
       <Title title="payment success" />
       <div className="abs-center payment-success_box">
-        <AnimatedCheckmark
-          mode={MODES.SUCCESS}
-          size={400}
-          breathingCollapse={true}
-        />
-
         <p className="c-mark">
           Your order has been processed. Please check your email box for more
           details.
