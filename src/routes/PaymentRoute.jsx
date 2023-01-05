@@ -32,11 +32,11 @@ const CheckoutForm = () => {
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://localhost:5173/payment_success?id=${data.paymentIntent.metadata.productId}`,
+        return_url: `https://ecommerce-frontend-duske953.vercel.app/payment_success?id=${data.paymentIntent.metadata.productId}`,
       },
     });
 
-    if (result.error) {
+    https: if (result.error) {
       console.log(result.error.message);
     } else {
     }

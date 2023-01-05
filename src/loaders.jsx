@@ -4,11 +4,8 @@ import { verifyUser, sendRequestToBackend } from "./utilities/utility";
 export async function homeRouteLoader({ request }) {
   try {
     const response = await sendRequestToBackend("get", "products", null, null);
-    console.log(response);
     return response;
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 }
 
 export function logoutLoader() {
