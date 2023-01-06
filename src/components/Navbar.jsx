@@ -16,7 +16,6 @@ export default function Navbar() {
   const submit = useSubmit();
   const [navActive, setNavActive] = useState(false);
   const { user, isLoading, isError } = useUser();
-  console.log(user);
   async function handleLogOut(e) {
     const id = renderToastify("Logging you out...");
     try {
