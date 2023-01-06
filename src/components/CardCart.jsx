@@ -50,7 +50,7 @@ export default function CardCart(props) {
       ? toast("Your account must me active to perform this action", {
           type: "error",
         })
-      : navigate(link);
+      : (window.location.href = link);
   }
   return (
     <div className="section-cart__card">

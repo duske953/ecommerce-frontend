@@ -40,33 +40,33 @@ export default function UserAccountRoute() {
     }
   }
 
-  function handleFileChange(e) {
-    setProfileImg(e.target.files[0]);
-  }
+  // function handleFileChange(e) {
+  //   setProfileImg(e.target.files[0]);
+  // }
 
   function handleToggleNav(e) {
     setNav(!nav);
   }
 
-  async function handleSubmit(e) {
-    const id = renderToastify("Uploading img");
-    try {
-      e.preventDefault();
-      const formData = new FormData();
-      formData.append("profileImg", profileImg);
-      const response = await sendRequestToBackend(
-        "post",
-        "users",
-        formData,
-        "uploadImg"
-      );
-      updateToastify(id, "Image uploaded successfully", "success");
-      inputRef.current.reset();
-      mutate("http://localhost:3000/api/v1/users/isLoggedIn");
-    } catch (err) {
-      updateToastify(id, err.response.data.message, "error");
-    }
-  }
+  // async function handleSubmit(e) {
+  //   const id = renderToastify("Uploading img");
+  //   try {
+  //     e.preventDefault();
+  //     const formData = new FormData();
+  //     formData.append("profileImg", profileImg);
+  //     const response = await sendRequestToBackend(
+  //       "post",
+  //       "users",
+  //       formData,
+  //       "uploadImg"
+  //     );
+  //     updateToastify(id, "Image uploaded successfully", "success");
+  //     inputRef.current.reset();
+  //     mutate("http://localhost:3000/api/v1/users/isLoggedIn");
+  //   } catch (err) {
+  //     updateToastify(id, err.response.data.message, "error");
+  //   }
+  // }
   return (
     <>
       <Navbar />
@@ -120,7 +120,7 @@ export default function UserAccountRoute() {
                   onClick={handleToggleNav}
                 />
               </li>
-              <li className="dashboard-section__user-nav-item">
+              {/* <li className="dashboard-section__user-nav-item">
                 <form method="post" onSubmit={handleSubmit} ref={inputRef}>
                   <Input
                     type="file"
@@ -134,7 +134,7 @@ export default function UserAccountRoute() {
                     <p>Upload profile Img</p>
                   </div>
                 </form>
-              </li>
+              </li> */}
             </ul>
           </div>
           <Outlet />

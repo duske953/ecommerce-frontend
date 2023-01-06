@@ -38,7 +38,9 @@ export default function ProductInfo(props) {
       );
       setBtnAction(false);
       updateToastify(refId.current, "Product added to cart", "success");
-      await mutate("https://oek-ecommerce-backend.vercel.app/users/isLoggedIn");
+      await mutate(
+        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn"
+      );
     } catch (err) {
       updateToastify(refId.current, err.response.data.message, "error");
       setBtnAction(false);

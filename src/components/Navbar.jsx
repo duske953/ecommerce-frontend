@@ -16,6 +16,7 @@ export default function Navbar() {
   const submit = useSubmit();
   const [navActive, setNavActive] = useState(false);
   const { user, isLoading, isError } = useUser();
+  console.log(user);
   async function handleLogOut(e) {
     const id = renderToastify("Logging you out...");
     try {
@@ -90,8 +91,7 @@ export default function Navbar() {
                   className="navbar-section__user"
                   to={`/user/${user.data.user._id}`}
                 >
-                  <img src={user.data.user.Img} />
-                  <p>{user.data.user.Name.slice(0, 2)}</p>
+                  <p>Hi, {user.data.user.Name}</p>
                 </Link>
               ) : (
                 <ButtonLink

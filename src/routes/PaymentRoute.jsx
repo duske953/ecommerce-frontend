@@ -32,7 +32,7 @@ const CheckoutForm = () => {
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `https://ecommerce-frontend-duske953.vercel.app/payment_success?id=${data.paymentIntent.metadata.productId}`,
+        return_url: `https://tech-freak.vercel.app/payment_success?id=${data.paymentIntent.metadata.productId}`,
       },
     });
 

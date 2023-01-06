@@ -22,7 +22,10 @@ export default function ProductInfoRoute() {
     return (
       <>
         <Navbar />
-        <p className="p-lg abs-center">{productError.response.data.message}</p>;
+        <p className="p-lg abs-center">
+          {productError.response.data.message || "Something went wrong"}
+        </p>
+        ;
       </>
     );
   }

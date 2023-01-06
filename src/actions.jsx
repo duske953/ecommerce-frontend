@@ -38,7 +38,7 @@ export async function loginAction({ request }) {
   } catch (err) {
     updateToastify(
       id,
-      `${err.response?.data?.message} || "Something went wrong"`,
+      `${err.response?.data?.message || "Something went wrong"}`,
       "error"
     );
   }
@@ -139,7 +139,11 @@ export async function forgotPassword({ request, params }) {
       status: response.status,
     };
   } catch (err) {
-    updateToastify(id, err.response.data.message, "error");
+    updateToastify(
+      id,
+      err.response.data.message || "Something went wrong",
+      "error"
+    );
   }
 }
 
