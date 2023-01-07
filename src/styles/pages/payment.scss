@@ -13,6 +13,7 @@
 
     @media (max-width: v.$media-break-5) {
       grid-template-columns: 1fr;
+      gap: 3.6rem;
     }
   }
 
@@ -42,6 +43,9 @@
 
   &__img {
     object-fit: scale-down;
+    @media (max-width: v.$media-break-5) {
+      width: 100%;
+    }
   }
 }
 
