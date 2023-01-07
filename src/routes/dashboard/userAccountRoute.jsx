@@ -2,21 +2,16 @@ import { useSWRConfig } from "swr";
 import { Navigate, useFetcher, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { useUser } from "../../hooks/swrhook";
-import { sendRequestToBackend } from "../../utilities/utility";
-import { renderToastify, updateToastify } from "../../utilities/toastify";
 import Err404 from "../../components/Err404";
 import Title from "../../components/Title";
 import { ButtonLink } from "../../components/Button";
 import { Outlet } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
-import { AiOutlineUpload } from "react-icons/ai";
 import { useRef } from "react";
 import { BsFillUnlockFill } from "react-icons/bs";
 import { GiConfirmed } from "react-icons/gi";
-import { Input } from "@mui/material";
 import { AiFillDelete } from "react-icons/ai";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { BsList } from "react-icons/bs";
 import { useState } from "react";
 export default function UserAccountRoute() {
   const { user, userLoading, userError } = useUser();
@@ -27,7 +22,7 @@ export default function UserAccountRoute() {
   const [profileImg, setProfileImg] = useState("");
   const [nav, setNav] = useState(false);
   if (!userLoading) {
-    if (user?.message === null || !user?.message)
+    if (!user || user.message === "Logged out")
       return <Navigate to="/login" replace />;
 
     if (userId !== user?.data.user?._id) {

@@ -14,10 +14,24 @@ export default function CartRoute() {
 
   if (
     user?.data.message === "Logged out" ||
-    cartError?.response?.status === 401
+    cartError?.response?.status === 401 ||
+    !user
   )
     return <Navigate to="/login" replace />;
   const cartProducts = cartData?.data?.product?.products;
+
+  if (cartError?.response?.status === 400 || cartError?.response.status > 404) {
+    return (
+      <>
+        <Navbar />
+        <DisplayErr>
+          <p className="p-lg abs-center">
+            {cartError?.response?.data.message || "Something went wrong"}
+          </p>
+        </DisplayErr>
+      </>
+    );
+  }
 
   return (
     <>

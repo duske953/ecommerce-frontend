@@ -18,14 +18,19 @@
 
     @media (max-width: v.$media-break-4) {
       position: absolute;
+      width: 45%;
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
       transform: translateX(-100%);
       transition: all 0.4s ease-in-out;
       background-color: #f1f3f5;
+      border: none;
     }
 
+    @media (max-width: v.$media-break-6) {
+      width: 60%;
+    }
     &__nav--active {
       opacity: 1;
       pointer-events: auto;

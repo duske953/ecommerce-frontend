@@ -36,7 +36,7 @@ const CheckoutForm = () => {
       },
     });
 
-    https: if (result.error) {
+    if (result.error) {
       console.log(result.error.message);
     } else {
     }
@@ -56,7 +56,6 @@ const stripePromise = loadStripe(
 export default function PaymentRoute() {
   const { user, userLoading, userError } = useUser();
   const data = useLoaderData();
-  console.log(data.status);
   if (data.status === 404) {
     return (
       <>
@@ -65,11 +64,11 @@ export default function PaymentRoute() {
     );
   }
 
-  if (data.status === 401 || user?.data.message === "Logged out") {
+  if (data.status === 401 || user?.data.message === "Logged out" || !user) {
     return <Navigate to="/login" replace />;
   }
 
-  if (data.status > 401) {
+  if (data?.status > 404 || data?.status === 400) {
     return (
       <>
         <Navbar />

@@ -91,7 +91,6 @@ export async function updatePasswordAction({ request, params }) {
       err.response?.data?.message || "Something went wrong",
       "error"
     );
-    console.log(err);
   }
 }
 

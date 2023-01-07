@@ -14,16 +14,19 @@ export default function ProductInfoRoute() {
   const { productData, productError, productLoading } = useProduct(params);
   const productInfo = productData?.data.product;
   const similarProducts = productData?.data.similarProduct;
-  if (productError?.response.status === 404) {
+  if (productError?.response?.status === 404) {
     return <Err404 />;
   }
 
-  if (productError?.response.status > 404) {
+  if (
+    productError?.response?.status === 400 ||
+    productError?.response?.status > 404
+  ) {
     return (
       <>
         <Navbar />
         <p className="p-lg abs-center">
-          {productError.response.data.message || "Something went wrong"}
+          {productError?.response?.data.message || "Something went wrong"}
         </p>
         ;
       </>

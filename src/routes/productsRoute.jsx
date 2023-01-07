@@ -7,6 +7,7 @@ import { DisplayErr } from "../utilities/utility";
 import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 import usePagination from "../hooks/paginationHook";
+import Err404 from "../components/Err404";
 export default function ProductsRoute() {
   const searchParamsData = useLoaderData();
   const { ProductsData, ProductsLoading, ProductsError } =
@@ -15,13 +16,18 @@ export default function ProductsRoute() {
     searchParamsData.page
   );
   const err = ProductsError?.response?.data?.message;
-  if (ProductsError)
+  if (ProductsError?.response.status === 404) return <Err404 />;
+
+  if (
+    ProductsError?.response.status === 400 ||
+    ProductsError.response.status > 404
+  )
     return (
       <>
         <Navbar />
         <DisplayErr>
           <p className="message">{err}</p>
-          <Title title="404 page not found" />
+          <Title title={err} />
         </DisplayErr>
       </>
     );
