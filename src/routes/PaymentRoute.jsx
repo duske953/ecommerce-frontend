@@ -12,6 +12,7 @@ import { useUser } from "../hooks/swrhook";
 import { Button } from "../components/Button";
 import Err404 from "../components/Err404";
 import Footer from "../components/Footer";
+import { changeImageWidth } from "../utilities/utility";
 
 const appearance = {
   theme: "night",
@@ -92,8 +93,12 @@ export default function PaymentRoute() {
           <div className="section-payment__img-box">
             <img
               className="section-payment__img"
-              src={data.paymentIntent.metadata.productImg}
-              alt=""
+              src={changeImageWidth(
+                data.paymentIntent.metadata.productImg,
+                "UL320",
+                "UL660"
+              )}
+              alt={data.paymentIntent.metadata.productTitle}
             />
           </div>
           <div className="section-payment__payment">
