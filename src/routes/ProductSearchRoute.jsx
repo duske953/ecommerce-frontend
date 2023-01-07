@@ -29,7 +29,7 @@ export default function ProductSearchRoute() {
     );
   if (
     searchedError?.response?.status === 400 ||
-    searchedError.response?.status > 404
+    searchedError?.response?.status > 404
   )
     return (
       <>

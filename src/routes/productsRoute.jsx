@@ -16,11 +16,11 @@ export default function ProductsRoute() {
     searchParamsData.page
   );
   const err = ProductsError?.response?.data?.message;
-  if (ProductsError?.response.status === 404) return <Err404 />;
+  if (ProductsError?.response?.status === 404) return <Err404 />;
 
   if (
-    ProductsError?.response.status === 400 ||
-    ProductsError.response.status > 404
+    ProductsError?.response?.status === 400 ||
+    ProductsError?.response?.status > 404
   )
     return (
       <>
