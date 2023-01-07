@@ -24,7 +24,7 @@ export default function ProductSearchRoute() {
     return (
       <>
         <Err404 />
-        <Title title="404 page not found" />
+        <Title title="page not found" />
       </>
     );
   if (
