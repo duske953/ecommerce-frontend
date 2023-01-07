@@ -63,9 +63,10 @@ export default function PaymentRoute() {
       </>
     );
   }
-
-  if (data.status === 401 || user?.data.message === "Logged out" || !user) {
-    return <Navigate to="/login" replace />;
+  if (!userLoading) {
+    if (data.status === 401 || user?.data.message === "Logged out" || !user) {
+      return <Navigate to="/login" replace />;
+    }
   }
 
   if (data?.status > 404 || data?.status === 400) {
