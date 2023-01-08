@@ -13,6 +13,7 @@ import { Button } from "../components/Button";
 import Err404 from "../components/Err404";
 import Footer from "../components/Footer";
 import { changeImageWidth } from "../utilities/utility";
+import NetworkError from "../components/NetworkError";
 
 const appearance = {
   theme: "night",
@@ -57,7 +58,8 @@ const stripePromise = loadStripe(
 export default function PaymentRoute() {
   const { user, userLoading, userError } = useUser();
   const data = useLoaderData();
-  if (data.status === 404) {
+  if (data?.err?.message === "Network Error") return <NetworkError />;
+  if (data?.status === 404) {
     return (
       <>
         <Err404 />

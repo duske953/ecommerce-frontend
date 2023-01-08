@@ -8,6 +8,7 @@ import { useLoaderData, useFetcher } from "react-router-dom";
 import { useFormik } from "formik";
 import Footer from "../components/Footer";
 import * as yup from "yup";
+import NetworkError from "../components/NetworkError";
 export default function ResetPassword() {
   const data = useLoaderData();
   const Fetcher = useFetcher();
@@ -28,6 +29,8 @@ export default function ResetPassword() {
         .oneOf([yup.ref("Password")], "Passwords dont' match"),
     }),
   });
+
+  if (data?.err?.message === "Network Error") return <NetworkError />;
   if (data?.status !== 200) return <Err404 />;
   const loadingState = Fetcher.state;
   return (

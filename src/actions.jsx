@@ -140,7 +140,7 @@ export async function forgotPassword({ request, params }) {
   } catch (err) {
     updateToastify(
       id,
-      err.response.data.message || "Something went wrong",
+      err?.response?.data?.message || "Something went wrong",
       "error"
     );
   }
@@ -168,6 +168,10 @@ export async function resetPasswordAction({ request, params }) {
     return redirect("/");
   } catch (err) {
     console.log(err);
-    updateToastify(idToast, err.response.data.message, "error");
+    updateToastify(
+      idToast,
+      err?.response?.data?.message || "Something went wrong",
+      "error"
+    );
   }
 }

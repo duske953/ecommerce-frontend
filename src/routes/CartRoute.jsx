@@ -7,10 +7,13 @@ import CardCart from "../components/CardCart";
 import { v4 as uuidv4 } from "uuid";
 import emptyCart from "../assets/undraw_empty_cart_co35.svg";
 import Footer from "../components/Footer";
+import NetworkError from "../components/NetworkError";
 
 export default function CartRoute() {
   const { user, userLoading } = useUser();
   const { cartData, cartLoading, cartError } = usegetProductsFromCart();
+
+  if (cartError?.message === "Network Error") return <NetworkError />;
 
   if (
     user?.data.message === "Logged out" ||

@@ -5,6 +5,7 @@ import Title from "../components/Title";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useUser } from "../hooks/swrhook";
+import NetworkError from "../components/NetworkError";
 export default function PaymentSuccess() {
   const data = useLoaderData();
   const { mutate } = useSWRConfig();
@@ -16,6 +17,7 @@ export default function PaymentSuccess() {
     mutate("https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn");
   }
 
+  if (data?.err?.message === "Network Error") return <NetworkError />;
   if (data?.status !== 200) {
     return (
       <>

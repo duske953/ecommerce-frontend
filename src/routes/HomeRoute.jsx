@@ -8,9 +8,23 @@ import { Details } from "../page/homePage/Details";
 import { ButtonLink } from "../components/Button";
 import Footer from "../components/Footer";
 import { useLoaderData } from "react-router-dom";
+import NetworkError from "../components/NetworkError";
 
 export default function HomeRoute() {
   const response = useLoaderData();
+  if (response?.message === "Network Error") return <NetworkError />;
+
+  if (response?.response?.status > 404)
+    return (
+      <>
+        <Navbar />
+        <p className="p-lg abs-center">
+          {response?.response?.data.message || "Something went wrong"}
+        </p>
+        ;
+      </>
+    );
+
   const headPhones = response.data.data.headphones;
   const laptops = response.data.data.laptops;
 

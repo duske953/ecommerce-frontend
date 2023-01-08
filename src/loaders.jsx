@@ -5,7 +5,9 @@ export async function homeRouteLoader({ request }) {
   try {
     const response = await sendRequestToBackend("get", "products", null, null);
     return response;
-  } catch (err) {}
+  } catch (err) {
+    return err;
+  }
 }
 
 export function logoutLoader() {
@@ -67,8 +69,9 @@ export async function stripePaymentLoader({ params }) {
     };
   } catch (err) {
     return {
-      status: err.response.status,
-      msg: err.response.data.message,
+      status: err.response?.status,
+      msg: err.response?.data?.message,
+      err,
     };
   }
 }
@@ -83,13 +86,14 @@ export async function paymentSuccessLoader({ request }) {
       { id },
       "deleteProductFromCart"
     );
-    const k = await sendRequestToBackend("post", "users", { id }, "sendMail");
+    await sendRequestToBackend("post", "users", { id }, "sendMail");
     return {
       status: response.status,
     };
   } catch (err) {
     return {
       status: err.response.status,
+      err,
     };
   }
 }
@@ -110,6 +114,7 @@ export async function checkValidPasswordResetTokenLoader({ request, params }) {
   } catch (err) {
     return {
       status: err.response.status,
+      err,
     };
   }
 }

@@ -8,6 +8,7 @@ import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 import usePagination from "../hooks/paginationHook";
 import Err404 from "../components/Err404";
+import NetworkError from "../components/NetworkError";
 export default function ProductsRoute() {
   const searchParamsData = useLoaderData();
   const { ProductsData, ProductsLoading, ProductsError } =
@@ -15,6 +16,8 @@ export default function ProductsRoute() {
   const { handleIncreaseClick, handleDecreaseClick, page } = usePagination(
     searchParamsData.page
   );
+
+  if (productError?.message === "Network Error") return <NetworkError />;
   const err = ProductsError?.response?.data?.message;
   if (ProductsError?.response?.status === 404) return <Err404 />;
 

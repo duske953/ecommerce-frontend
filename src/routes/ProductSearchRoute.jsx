@@ -8,6 +8,7 @@ import Navbar from "../components/Navbar";
 import usePagination from "../hooks/paginationHook";
 import Pagination from "../components/Pagination";
 import { DisplayErr } from "../utilities/utility";
+import NetworkError from "../components/NetworkError";
 
 export default function ProductSearchRoute() {
   // const [page, setPage] = useState(1);
@@ -18,8 +19,9 @@ export default function ProductSearchRoute() {
     q,
     page
   );
-  const err = searchedError?.response?.data?.message;
 
+  if (searchedError?.message === "Network Error") return <NetworkError />;
+  const err = searchedError?.response?.data?.message;
   if (searchedError?.response?.status === 404)
     return (
       <>
@@ -46,11 +48,6 @@ export default function ProductSearchRoute() {
       <Navbar />
       {searchedLoading ? (
         <ProductsBox state="loading" />
-      ) : searchedProduct.data.searchedProduct.length === 0 ? (
-        <>
-          <Err404 />
-          <Title title="404 page not found" />
-        </>
       ) : (
         <>
           <section className="featured-products">

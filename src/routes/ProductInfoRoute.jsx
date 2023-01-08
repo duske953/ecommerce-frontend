@@ -7,6 +7,7 @@ import { ScrollRestoration, useLoaderData } from "react-router-dom";
 import { ProductsBox } from "../components/products";
 import Err404 from "../components/Err404";
 import { useProduct } from "../hooks/swrhook";
+import NetworkError from "../components/NetworkError";
 import Footer from "../components/Footer";
 
 export default function ProductInfoRoute() {
@@ -14,6 +15,9 @@ export default function ProductInfoRoute() {
   const { productData, productError, productLoading } = useProduct(params);
   const productInfo = productData?.data.product;
   const similarProducts = productData?.data.similarProduct;
+
+  if (productError?.message === "Network Error") return <NetworkError />;
+
   if (productError?.response?.status === 404) {
     return <Err404 />;
   }
