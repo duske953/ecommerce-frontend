@@ -1,12 +1,17 @@
 import SearchBox from "../../components/SearchBox";
 import HeroImg from "../../assets/undraw_window_shopping_re_0kbm.svg";
-export default function Hero() {
+import Skeleton from "react-loading-skeleton";
+export default function Hero({ state }) {
   return (
     <section className="hero-section">
       <div className="hero-section__container">
         <div className="hero-section__content">
           <h1 className="primary-heading m-bottom-sm">
-            Get everything you ever wanted right from the comfort of your home
+            {state === "loading" ? (
+              <Skeleton />
+            ) : (
+              "Get everything you ever wanted right from the comfort of your home"
+            )}
           </h1>
           <SearchBox />
         </div>

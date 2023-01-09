@@ -43,19 +43,15 @@ export default function ProductInfoRoute() {
       <Navbar />
       <ScrollRestoration />
       {productLoading ? (
-        <ProductInfo state="loading" />
+        <>
+          <ProductInfo state="loading" />
+          <ProductsBox state="loading" />
+        </>
       ) : (
         <div>
           <ProductInfo {...productInfo} />
           <section className="featured-products">
             <ProductsBox title="Similar products" data={similarProducts} />
-            <div className="featured-products__btn-box">
-              <ButtonLink
-                link="/otherproducts"
-                title="see more"
-                nameClass="featured-products__button"
-              />
-            </div>
           </section>
         </div>
       )}

@@ -19,7 +19,6 @@ import ForgotPassword from "./routes/ForgotPassword";
 import ResetPassword from "./routes/ResetPassword";
 import Index from "./routes/dashboard";
 import {
-  homeRouteLoader,
   productInfoRouteLoader,
   productSearchLoader,
   productsRouteLoader,
@@ -43,7 +42,6 @@ export const routing = createBrowserRouter([
     path: "/",
     element: <HomeRoute />,
     errorElement: <ErrorPage />,
-    loader: homeRouteLoader,
   },
   {
     path: "/login",

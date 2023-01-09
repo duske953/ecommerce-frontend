@@ -17,6 +17,15 @@ export function useUser() {
   };
 }
 
+export function useHomeProducts() {
+  const { data, error } = useSWRImmutable(`${url}/products`, fetcher);
+  return {
+    homeProductsData: data,
+    homeProductsLoading: !error && !data,
+    homeProductsError: error,
+  };
+}
+
 export function useProduct({ asin, id }) {
   const { data, error } = useSWRImmutable(
     `${url}/products/${asin}/${id}`,

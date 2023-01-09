@@ -1,14 +1,5 @@
 import { redirect } from "react-router-dom";
-import { verifyUser, sendRequestToBackend } from "./utilities/utility";
-
-export async function homeRouteLoader({ request }) {
-  try {
-    const response = await sendRequestToBackend("get", "products", null, null);
-    return response;
-  } catch (err) {
-    return err;
-  }
-}
+import { sendRequestToBackend } from "./utilities/utility";
 
 export function logoutLoader() {
   return redirect("/");

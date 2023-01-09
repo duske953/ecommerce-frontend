@@ -85,13 +85,17 @@ export default function ProductInfo(props) {
             </div>
             {/* <p className="product-info__price">{`${props.price.symbol}${props.price.value}`}</p> */}
             <div className="product-info__btns">
-              <Button
-                onClick={handleAddToCart}
-                msg="Add to cart"
-                nameClass="primary-button"
-                style={btnAction ? "processing" : "idle"}
-                isDisabled={btnAction}
-              />
+              {props.state === "loading" ? (
+                <Skeleton />
+              ) : (
+                <Button
+                  onClick={handleAddToCart}
+                  msg="Add to cart"
+                  nameClass="primary-button"
+                  style={btnAction ? "processing" : "idle"}
+                  isDisabled={btnAction}
+                />
+              )}
             </div>
           </div>
         </div>

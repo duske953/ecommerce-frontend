@@ -6,9 +6,13 @@ export function ProductsBox({ data, title, state }) {
   const items = state === "loading" ? Array(8).fill(0, 0) : data;
   return (
     <>
-      <h2 className="secondary-heading featured-products__heading g-container">
-        {state === "loading" ? <Skeleton /> : title}
-      </h2>
+      {state === "loading" ? (
+        <Skeleton count={5} width={"20%"} />
+      ) : (
+        <h2 className="secondary-heading featured-products__heading g-container">
+          {title}
+        </h2>
+      )}
       <div className="featured-products__section-box">
         <div className="featured-products__container">
           <div className="featured-products__products">
