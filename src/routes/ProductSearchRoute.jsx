@@ -46,7 +46,11 @@ export default function ProductSearchRoute() {
   return (
     <>
       <Navbar />
-      <ScrollRestoration />
+      <ScrollRestoration
+        getKey={(location, matches) => {
+          return location.key;
+        }}
+      />
       {searchedLoading ? (
         <ProductsBox state="loading" />
       ) : (
