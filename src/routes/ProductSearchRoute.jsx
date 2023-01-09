@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, ScrollRestoration } from "react-router-dom";
 import Title from "../components/Title";
 import { useSearchProduct } from "../hooks/swrhook";
 import Footer from "../components/Footer";
@@ -46,6 +46,7 @@ export default function ProductSearchRoute() {
   return (
     <>
       <Navbar />
+      <ScrollRestoration />
       {searchedLoading ? (
         <ProductsBox state="loading" />
       ) : (

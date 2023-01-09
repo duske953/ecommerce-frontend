@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, ScrollRestoration } from "react-router-dom";
 import Title from "../components/Title";
 import { useFetchProducts } from "../hooks/swrhook";
 import Navbar from "../components/Navbar";
@@ -17,7 +17,7 @@ export default function ProductsRoute() {
     searchParamsData.page
   );
 
-  if (productError?.message === "Network Error") return <NetworkError />;
+  if (ProductsError?.message === "Network Error") return <NetworkError />;
   const err = ProductsError?.response?.data?.message;
   if (ProductsError?.response?.status === 404) return <Err404 />;
 
@@ -37,6 +37,7 @@ export default function ProductsRoute() {
 
   return (
     <>
+      <ScrollRestoration />
       <Navbar />
       {ProductsLoading ? (
         <ProductsBox state="loading" />
