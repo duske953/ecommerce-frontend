@@ -9,13 +9,14 @@ import { BsCart } from "react-icons/bs";
 import { BsList } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { navbarData } from "../utilities/navbardata";
+import Skeleton from "react-loading-skeleton";
 import { renderToastify, updateToastify } from "../utilities/toastify";
 
 export default function Navbar() {
   const { mutate } = useSWRConfig();
   const submit = useSubmit();
   const [navActive, setNavActive] = useState(false);
-  const { user, isLoading, isError } = useUser();
+  const { user, userLoading } = useUser();
   async function handleLogOut(e) {
     const id = renderToastify("Logging you out...");
     try {
@@ -69,49 +70,55 @@ export default function Navbar() {
 
         <nav className="navbar-section__box">
           <ul>
-            <li>
-              <ButtonLink link="/" title="Home" />
-            </li>
-            <li>
-              {user?.message ? (
-                <button
-                  onClick={handleLogOut}
-                  className="btn navbar-section__btn-logout"
-                >
-                  Logout
-                </button>
-              ) : (
-                <ButtonLink link="/login" title="Login" />
-              )}
-            </li>
-            <li>
-              {user?.message ? (
-                <Link
-                  className="navbar-section__user"
-                  to={`/user/${user.data.user._id}`}
-                >
-                  <p>Hi, {user.data.user.Name}</p>
-                </Link>
-              ) : (
-                <ButtonLink
-                  link="/signup"
-                  title="Signup"
-                  nameClass="navbar-section__sign"
-                />
-              )}
-            </li>
-
-            {user?.message ? (
-              <li>
-                <p>{user.data.user.products.length}</p>
-                <ButtonLink
-                  link={`/cart`}
-                  title={<BsCart />}
-                  nameClass="navbar-section__cart"
-                />
-              </li>
+            {userLoading ? (
+              <Skeleton width={380} height={25} borderRadius="0.4rem" />
             ) : (
-              ""
+              <>
+                {" "}
+                <li>
+                  <ButtonLink link="/" title="Home" />
+                </li>
+                <li>
+                  {user?.message ? (
+                    <button
+                      onClick={handleLogOut}
+                      className="btn navbar-section__btn-logout"
+                    >
+                      Logout
+                    </button>
+                  ) : (
+                    <ButtonLink link="/login" title="Login" />
+                  )}
+                </li>
+                <li>
+                  {user?.message ? (
+                    <Link
+                      className="navbar-section__user"
+                      to={`/user/${user.data.user._id}`}
+                    >
+                      <p>Hi, {user.data.user.Name}</p>
+                    </Link>
+                  ) : (
+                    <ButtonLink
+                      link="/signup"
+                      title="Signup"
+                      nameClass="navbar-section__sign"
+                    />
+                  )}
+                </li>
+                {user?.message ? (
+                  <li>
+                    <p>{user.data.user.products.length}</p>
+                    <ButtonLink
+                      link={`/cart`}
+                      title={<BsCart />}
+                      nameClass="navbar-section__cart"
+                    />
+                  </li>
+                ) : (
+                  ""
+                )}
+              </>
             )}
           </ul>
         </nav>
