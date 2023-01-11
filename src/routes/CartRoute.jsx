@@ -15,12 +15,14 @@ export default function CartRoute() {
 
   if (cartError?.message === "Network Error") return <NetworkError />;
 
-  if (
-    user?.data.message === "Logged out" ||
-    cartError?.response?.status === 401 ||
-    !user
-  )
-    return <Navigate to="/login" replace />;
+  if (!userLoading) {
+    if (
+      user?.data.message === "Logged out" ||
+      cartError?.response?.status === 401 ||
+      !user
+    )
+      return <Navigate to="/login" replace />;
+  }
   const cartProducts = cartData?.data?.product?.products;
 
   if (cartError?.response?.status === 400 || cartError?.response.status > 404) {
