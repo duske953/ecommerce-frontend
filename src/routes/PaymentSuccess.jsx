@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Navigate } from "react-router-dom";
 import { useSWRConfig } from "swr";
 import Err404 from "../components/Err404";
 import Title from "../components/Title";
