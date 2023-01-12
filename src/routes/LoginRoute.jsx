@@ -14,8 +14,8 @@ export default function LoginRoute() {
   const formik = useFormik({
     validateOnMount: true,
     initialValues: {
-      Email: "kennyduske@gmail.com",
-      Password: "k",
+      Email: "",
+      Password: "",
     },
     validationSchema: yup.object({
       Email: yup.string().email("please enter a correct email address"),

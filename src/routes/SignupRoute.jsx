@@ -15,10 +15,10 @@ export default function SignupRoute() {
   const formik = useFormik({
     validateOnMount: true,
     initialValues: {
-      Name: "kennedy",
-      Email: "kennyduske@gmail.com",
-      Password: "kennedys",
-      ConfirmPassword: "kennedys",
+      Name: "",
+      Email: "",
+      Password: "",
+      ConfirmPassword: "",
     },
     validationSchema: yup.object({
       Name: yup.string().required("Your name is requried"),
