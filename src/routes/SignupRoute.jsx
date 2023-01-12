@@ -57,7 +57,7 @@ export default function SignupRoute() {
           inputId="Email"
           type="email"
           onBlur={formik.handleBlur}
-          placeholder="elohokennedy@gmail.com"
+          placeholder="yourname@gmail.com"
         >
           <RenderError formik={formik} attr="Email" />
         </Input>

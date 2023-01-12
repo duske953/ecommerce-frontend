@@ -31,7 +31,7 @@ export default function LoginRoute() {
           onChange={formik.handleChange}
           inputId="Email"
           type="text"
-          placeholder="elohoennedy@gmail.com"
+          placeholder="yourname@gmail.com"
           onBlur={formik.handleBlur}
           value={formik.values.Email}
         >
