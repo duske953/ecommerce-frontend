@@ -8,7 +8,8 @@ const fetcher = (url) =>
 
 export function useUser() {
   const { data, error } = useSwr(`${url}/users/isLoggedIn`, fetcher, {
-    revalidateOnFocus: true,
+    revalidateOnFocus: false,
+    dedupingInterval: 300000,
   });
   return {
     user: data,
