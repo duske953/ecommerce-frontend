@@ -71,7 +71,7 @@ export default function Navbar() {
         <nav className="navbar-section__box">
           <ul>
             {userLoading ? (
-              <Skeleton width={380} height={25} borderRadius="0.4rem" />
+              <Skeleton width={350} height={25} borderRadius="0.4rem" />
             ) : (
               <>
                 {" "}

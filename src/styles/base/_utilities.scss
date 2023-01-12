@@ -200,3 +200,33 @@
     cursor: pointer;
   }
 }
+
+.disclaimer-box {
+  background-color: #f8f9fa;
+  width: 50%;
+  bottom: 0;
+  right: 0;
+  padding: 1.8rem;
+  color: #333;
+  &__heading {
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__details p {
+    font-size: 1.8rem;
+  }
+
+  &__details span {
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+}

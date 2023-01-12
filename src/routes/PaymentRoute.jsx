@@ -88,7 +88,22 @@ export default function PaymentRoute() {
   return (
     <>
       <Navbar />
-      <a href=""></a>
+      <div className="disclaimer-box">
+        <p className="disclaimer-box__heading">
+          Do not use your real credentials!!!
+        </p>
+        <div className="disclaimer-box__details">
+          <p>
+            Card Number : <span>4242 4242 4242 4242</span>
+          </p>
+          <p>
+            MM / YY : <span>Use any of your choice i.e (12/25)</span>
+          </p>
+          <p>
+            CVC: <span>Use any of your choice i.e (424)</span>
+          </p>
+        </div>
+      </div>
       <Title title={`Checkout ${data.paymentIntent.metadata.productTitle}`} />
       <section className="section-payment">
         <div className="section-payment__container">
@@ -120,7 +135,6 @@ export default function PaymentRoute() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 }

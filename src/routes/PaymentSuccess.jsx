@@ -27,8 +27,10 @@ export default function PaymentSuccess() {
     );
   }
 
-  if (data?.status === 401 || !user || user?.data.message === "Logged out")
-    return <Navigate to="/" replace />;
+  if (!userLoading) {
+    if (data?.status === 401 || !user || user?.data.message === "Logged out")
+      return <Navigate to="/" replace />;
+  }
 
   return (
     <>
@@ -40,7 +42,6 @@ export default function PaymentSuccess() {
           details.
         </p>
       </div>
-      <Footer />
     </>
   );
 }
