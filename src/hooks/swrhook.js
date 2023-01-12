@@ -8,7 +8,7 @@ const fetcher = (url) =>
 
 export function useUser() {
   const { data, error } = useSWRImmutable(`${url}/users/isLoggedIn`, fetcher, {
-    errorRetryCount: 2,
+    errorRetryCount: 1,
     revalidateOnReconnect: true,
   });
   return {
