@@ -2,10 +2,11 @@ import { useLoaderData, Navigate } from "react-router-dom";
 import { useSWRConfig } from "swr";
 import Err404 from "../components/Err404";
 import Title from "../components/Title";
-import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useUser } from "../hooks/swrhook";
 import NetworkError from "../components/NetworkError";
+import { Checkmark } from "react-checkmark";
+
 export default function PaymentSuccess() {
   const data = useLoaderData();
   const { mutate } = useSWRConfig();
@@ -37,6 +38,7 @@ export default function PaymentSuccess() {
       <Navbar />
       <Title title="payment success" />
       <div className="abs-center payment-success_box">
+        <Checkmark size="xxLarge" color="#223344" />
         <p className="c-mark">
           Your order has been processed. Please check your email box for more
           details.
