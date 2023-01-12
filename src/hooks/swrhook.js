@@ -7,9 +7,9 @@ const fetcher = (url) =>
   axios.get(url, { withCredentials: true }).then((res) => res.data);
 
 export function useUser() {
-  const { data, error } = useSwr(`${url}/users/isLoggedIn`, fetcher, {
-    revalidateOnFocus: false,
-    dedupingInterval: 300000,
+  const { data, error } = useSWRImmutable(`${url}/users/isLoggedIn`, fetcher, {
+    errorRetryCount: 2,
+    revalidateOnReconnect: true,
   });
   return {
     user: data,
