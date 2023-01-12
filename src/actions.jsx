@@ -111,7 +111,6 @@ export async function updateUserDetailsAction({ request, params }) {
     updateToastify(id, "Details changed", "success");
     return redirect(`/user/${params.userId}`);
   } catch (err) {
-    console.log(err);
     updateToastify(
       id,
       err.response?.data?.message || "Something went wrong",
@@ -167,7 +166,6 @@ export async function resetPasswordAction({ request, params }) {
     updateToastify(idToast, response.data.message, "success");
     return redirect("/");
   } catch (err) {
-    console.log(err);
     updateToastify(
       idToast,
       err?.response?.data?.message || "Something went wrong",
