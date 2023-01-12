@@ -9,9 +9,9 @@ export default function Index() {
   const { user, isLoading, isError } = useUser();
   useEffect(() => {
     let id = setInterval(() => setTime(new Date().getHours()), 1800000);
-    if (time < 5) setDay("Good Morning");
-    if (time >= 12 && time <= 17) setDay("Good Afternoon");
-    if (time >= 17 && time <= 24) setDay("Good Evening");
+    if (time < 12) setDay("Good Morning");
+    if (time < 18) setDay("Good Afternoon");
+    else setDay("Good Evening");
     return () => clearInterval(id);
   }, [time]);
 
