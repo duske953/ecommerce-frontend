@@ -1,8 +1,8 @@
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-let url = "http://localhost:3000/api/v1";
-// let url = "https://oek-ecommerce-backend.vercel.app/api/v1";
+// let url = "http://localhost:3000/api/v1";
+let url = "https://oek-ecommerce-backend.vercel.app/api/v1";
 
 export async function sendRequestToBackend(method, primaryRoute, data, route) {
   try {
