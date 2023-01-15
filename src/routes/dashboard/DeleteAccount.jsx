@@ -115,7 +115,7 @@ export default function DeleteAccount() {
         <Popup
           position="bottom center"
           modal={true}
-          closeOnDocumentClick={false}
+          closeOnDocumentClick={true}
           open={Modal}
         >
           <div>
