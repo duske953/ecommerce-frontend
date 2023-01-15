@@ -1,4 +1,4 @@
-import { useLoaderData, Navigate } from "react-router-dom";
+import { useLoaderData, Navigate, Await } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSWRConfig } from "swr";
 import Err404 from "../components/Err404";
@@ -11,10 +11,7 @@ import Skeleton from "react-loading-skeleton";
 
 export default function PaymentSuccess() {
   const data = useLoaderData();
-  const [load, setLoad] = useState(false);
-  useEffect(() => {
-    setLoad(true);
-  }, [data]);
+
   const { mutate } = useSWRConfig();
 
   const { user, userLoading } = useUser();
@@ -24,8 +21,6 @@ export default function PaymentSuccess() {
     );
     mutate("https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn");
   }
-
-  if (!load) return <Skeleton count={25} />;
 
   if (data?.err?.message === "Network Error") return <NetworkError />;
   if (data?.status !== 200) {

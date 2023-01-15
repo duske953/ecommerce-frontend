@@ -1,4 +1,4 @@
-import { Navigate, useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData, Form, useNavigate } from "react-router-dom";
 import {
   Elements,
   PaymentElement,
@@ -7,12 +7,14 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Navbar from "../components/Navbar";
+import { useState } from "react";
 import Title from "../components/Title";
 import { useUser } from "../hooks/swrhook";
 import { Button } from "../components/Button";
 import Err404 from "../components/Err404";
-import Footer from "../components/Footer";
-import { changeImageWidth } from "../utilities/utility";
+import { renderToastify, updateToastify } from "../utilities/toastify";
+// import Footer from "../components/Footer";
+import { changeImageWidth, sendRequestToBackend } from "../utilities/utility";
 import NetworkError from "../components/NetworkError";
 
 const appearance = {
@@ -23,6 +25,8 @@ const CheckoutForm = () => {
   const data = useLoaderData();
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
+  const [paymentLoading, setPaymentLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -31,24 +35,45 @@ const CheckoutForm = () => {
       return;
     }
 
+    setPaymentLoading(true);
+    renderToastify("Processing order...");
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `https://tech-freak.vercel.app/payment_success?id=${data.paymentIntent.metadata.productId}`,
+        return_url: `http://localhost:5173/payment_success?id=${data.paymentIntent.metadata.productId}`,
       },
+      redirect: "if_required",
     });
 
     if (result.error) {
-      console.log(result.error.message);
+      setPaymentLoading(false);
+      updateToastify(
+        renderToastify("Processing order..."),
+        result.error.message,
+        "error"
+      );
     } else {
+      await sendRequestToBackend(
+        "post",
+        "users",
+        { id: data.paymentIntent.metadata.productId },
+        "productPaid"
+      );
+      navigate(`/payment_success?id=${data.paymentIntent.metadata.productId}`);
     }
   }
 
   return (
-    <form className="payment-element" onSubmit={handleSubmit}>
+    <Form className="payment-element" onSubmit={handleSubmit}>
       <PaymentElement />
-      <Button nameClass="form" style="idle" msg="submit" type="submit" />
-    </form>
+      <Button
+        isDisabled={!stripe || !!paymentLoading}
+        nameClass="form"
+        style={paymentLoading ? "processing" : "idle"}
+        msg="submit"
+        type="submit"
+      />
+    </Form>
   );
 };
 

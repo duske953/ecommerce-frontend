@@ -1,5 +1,6 @@
 import { redirect } from "react-router-dom";
 import { sendRequestToBackend } from "./utilities/utility";
+import { renderToastify, updateToastify } from "./utilities/toastify";
 
 export function logoutLoader() {
   return redirect("/");
@@ -73,19 +74,19 @@ export async function paymentSuccessLoader({ request }) {
     const id = url.searchParams.get("id");
     const response = await sendRequestToBackend(
       "patch",
-      "products",
-      { id },
-      "deleteProductFromCart"
+      "users",
+      { id, info: "payment-success" },
+      "checkIfUserPaidForItem"
     );
-    await sendRequestToBackend("post", "users", { id }, "sendMail");
-    return {
-      status: response.status,
-    };
+
+    updateToastify(
+      renderToastify("Processing your order"),
+      "Order processed",
+      "success"
+    );
+    return { status: response.status };
   } catch (err) {
-    return {
-      status: err.response.status,
-      err,
-    };
+    return { status: err.response.status, err };
   }
 }
 

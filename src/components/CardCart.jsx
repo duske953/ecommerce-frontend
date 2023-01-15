@@ -61,8 +61,8 @@ export default function CardCart(props) {
           <div className="section-cart__img-box">
             <img
               className="section-cart__img"
-              src={props.image}
-              alt={props.title}
+              src={props.products.image}
+              alt={props.products.title}
             />
           </div>
         )}
@@ -71,26 +71,34 @@ export default function CardCart(props) {
             {props.state === "loading" ? (
               <Skeleton />
             ) : (
-              props.title.slice(0, 14)
+              props.products.title.slice(0, 14)
             )}
             ...
           </p>
           <p className="section-cart__id">
             Ref:{" "}
-            {props.state === "loading" ? <Skeleton /> : props.categories[0].id}
+            {props.state === "loading" ? (
+              <Skeleton />
+            ) : (
+              props.products.categories[0].id
+            )}
           </p>
         </div>
       </div>
       <p className="section-cart__category">
-        {props.state === "loading" ? <Skeleton /> : props.categories[0].name}
+        {props.state === "loading" ? (
+          <Skeleton />
+        ) : (
+          props.products.categories[0].name
+        )}
       </p>
       <div className="section-cart__price">
         {props.state === "loading" ? (
           <Skeleton />
-        ) : props.price.symbol && props.price.value ? (
-          props.price.symbol + "" + props.price.value
+        ) : props.products.price.symbol && props.products.price.value ? (
+          props.products.price.symbol + "" + props.products.price.value
         ) : (
-          props.price.name
+          props.products.price.name
         )}
       </div>
       <div className="section-cart__action">
