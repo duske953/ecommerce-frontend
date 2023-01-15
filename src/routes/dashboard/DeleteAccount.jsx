@@ -122,6 +122,9 @@ export default function DeleteAccount() {
           modal={true}
           closeOnDocumentClick={true}
           open={Modal}
+          onClose={() => {
+            setModal(!Modal);
+          }}
         >
           <div>
             <p>
