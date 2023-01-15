@@ -11,7 +11,7 @@ export default function Index() {
     let id = setInterval(() => setTime(new Date().getHours()), 1800000);
     if (time < 12) setDay("Good Morning");
     if (time >= 12 && time <= 16) setDay("Good Afternoon");
-    else setDay("Good Evening");
+    if (time > 16) setDay("Good Evening");
     return () => clearInterval(id);
   }, [time]);
 

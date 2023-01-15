@@ -11,7 +11,6 @@ import Skeleton from "react-loading-skeleton";
 import { useState } from "react";
 
 export default function CardCart(props) {
-  console.log(props.products);
   const { user, userLoading, userError } = useUser();
   const { mutate } = useSWRConfig();
   const [deleteItem, setDeleteItem] = useState(false);

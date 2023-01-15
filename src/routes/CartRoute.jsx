@@ -25,7 +25,6 @@ export default function CartRoute() {
   }
 
   const cartProducts = cartData?.data?.product?.products;
-  console.log(cartProducts);
 
   if (cartError?.response?.status === 400 || cartError?.response.status > 404) {
     return (
