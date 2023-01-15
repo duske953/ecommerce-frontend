@@ -12,7 +12,7 @@ export default function userInfo() {
   const loadingState = Fetcher.state;
 
   if (Fetcher.data === "ok") {
-    mutate("http://localhost:3000/api/v1/users/isLoggedIn");
+    mutate("https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn");
   }
   const formik = useFormik({
     validateOnMount: true,
