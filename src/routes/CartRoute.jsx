@@ -14,6 +14,7 @@ export default function CartRoute() {
   const { cartData, cartLoading, cartError } = usegetProductsFromCart();
 
   if (cartError?.message === "Network Error") return <NetworkError />;
+
   if (userLoading === false) {
     if (
       user?.data.message === "Logged out" ||

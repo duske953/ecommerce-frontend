@@ -40,7 +40,7 @@ const CheckoutForm = () => {
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://localhost:5173/payment_success?id=${data.paymentIntent.metadata.productId}`,
+        return_url: `https://tech-freak.vercel.app/payment_success?id=${data.paymentIntent.metadata.productId}`,
       },
       redirect: "if_required",
     });
