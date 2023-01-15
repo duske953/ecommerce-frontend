@@ -1,19 +1,27 @@
 import { useFormik } from "formik";
 import { useSWRConfig } from "swr";
 import { useUser } from "../../hooks/swrhook";
-import { useFetcher, Navigate } from "react-router-dom";
+import { useFetcher, Navigate, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import Input from "../../components/Input";
 import * as yup from "yup";
+import { useEffect } from "react";
 export default function userInfo() {
   const { mutate } = useSWRConfig();
   const { user, userLoading } = useUser();
   const Fetcher = useFetcher();
   const loadingState = Fetcher.state;
+  const navigate = useNavigate();
 
-  if (Fetcher.data === "ok") {
-    mutate("https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn");
-  }
+  useEffect(() => {
+    if (Fetcher.data?.msg === "ok") {
+      mutate(
+        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn"
+      );
+    }
+    navigate(Fetcher.data?.path);
+  }, [Fetcher.data]);
+
   const formik = useFormik({
     validateOnMount: true,
     enableReinitialize: true,

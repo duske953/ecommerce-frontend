@@ -109,7 +109,10 @@ export async function updateUserDetailsAction({ request, params }) {
       "updateMe"
     );
     updateToastify(id, "Details changed", "success");
-    return redirect(`/user/${params.userId}`);
+    return {
+      msg: "ok",
+      path: `/user/${params.userId}`,
+    };
   } catch (err) {
     updateToastify(
       id,
