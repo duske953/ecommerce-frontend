@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { renderToastify, updateToastify } from "../../utilities/toastify";
 import { sendRequestToBackend } from "../../utilities/utility";
 import { Button } from "../../components/Button";
 import { RenderError } from "../../utilities/utility";
@@ -36,7 +37,9 @@ export default function DeleteAccount() {
       );
       toast("Account deleted...", { type: "success" });
       setModal(!Modal);
-      mutate("http://localhost:3000/api/v1/users/isLoggedIn");
+      mutate(
+        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn"
+      );
       window.location.href = "/";
     } catch (err) {
       toast(err.response.data.message, { type: "error" });
@@ -60,6 +63,7 @@ export default function DeleteAccount() {
   });
 
   async function handleDelete() {
+    const id = renderToastify("Processing");
     try {
       const response = await sendRequestToBackend(
         "delete",
@@ -72,8 +76,9 @@ export default function DeleteAccount() {
         "deleteAccount"
       );
       setModal(!Modal);
+      updateToastify(id, "Action required", "info");
     } catch (err) {
-      toast(err.response.data.message, { type: "error" });
+      updateToastify(id, err.response.data.message, "error");
     }
   }
   return (
