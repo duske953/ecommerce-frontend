@@ -1,13 +1,12 @@
-import { useLoaderData, Navigate, Await } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useLoaderData, Navigate } from "react-router-dom";
 import { useSWRConfig } from "swr";
+import { useEffect } from "react";
 import Err404 from "../components/Err404";
 import Title from "../components/Title";
 import Navbar from "../components/Navbar";
 import { useUser } from "../hooks/swrhook";
 import NetworkError from "../components/NetworkError";
 import { Checkmark } from "react-checkmark";
-import Skeleton from "react-loading-skeleton";
 
 export default function PaymentSuccess() {
   const data = useLoaderData();
@@ -15,12 +14,16 @@ export default function PaymentSuccess() {
   const { mutate } = useSWRConfig();
 
   const { user, userLoading } = useUser();
-  if (data?.status === 200) {
-    mutate(
-      "https://oek-ecommerce-backend.vercel.app/api/v1/products/getProductsFromCart"
-    );
-    mutate("https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn");
-  }
+  useEffect(() => {
+    if (data?.status === 200) {
+      mutate(
+        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn"
+      );
+      mutate(
+        "https://oek-ecommerce-backend.vercel.app/api/v1/products/getProductsFromCart"
+      );
+    }
+  }, [data]);
 
   if (data?.err?.message === "Network Error") return <NetworkError />;
   if (data?.status !== 200) {
