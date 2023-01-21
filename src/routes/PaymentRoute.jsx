@@ -91,8 +91,9 @@ export default function PaymentRoute() {
       </>
     );
   }
+  if (data.status === 401) return <Navigate to="/login" replace />;
   if (userLoading === false) {
-    if (data.status === 401 || user?.data.message === "Logged out" || !user) {
+    if (user?.data.message === "Logged out" || !user) {
       return <Navigate to="/login" replace />;
     }
   }

@@ -10,7 +10,7 @@ export default function Forms({ children, img, infoText, action }) {
   const { user, isLoading, isError } = useUser();
   const from = location?.state?.pathname || "/";
   if (user?.message || fetcher?.data === "authenticated") {
-    mutate("https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn");
+    mutate("https://tech-freak.vercel.app/api/v1/users/isLoggedIn");
     return <Navigate to={from} replace={true} />;
   }
   return (
