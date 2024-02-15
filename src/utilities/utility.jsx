@@ -2,8 +2,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 // let url = "http://localhost:3000/api/v1";
-let url = import.meta.env.VITE_BACKEND_URL;
-console.log(url)
+let url = import.meta.env.VITE_BACKEND_URL
 
 export async function sendRequestToBackend(method, primaryRoute, data, route) {
   try {
