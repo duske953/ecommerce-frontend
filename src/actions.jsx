@@ -138,6 +138,7 @@ export async function forgotPassword({ request, params }) {
     updateToastify(id, response.data.message, "success");
     return {
       status: response.status,
+      message:"okay"
     };
   } catch (err) {
     updateToastify(

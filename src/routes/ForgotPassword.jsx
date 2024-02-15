@@ -1,5 +1,5 @@
-import { useFetcher, Navigate } from "react-router-dom";
-import { useRef } from "react";
+import { useFetcher, Navigate,useActionData } from "react-router-dom";
+import { useRef,useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Title from "../components/Title";
 import Input from "../components/Input";
@@ -12,6 +12,7 @@ export default function ForgotPassword() {
   const Fetcher = useFetcher();
   const formRef = useRef(null);
   const loadingState = Fetcher.state;
+  const {message} = useActionData()
   const { user, userLoading, userError } = useUser();
   const formik = useFormik({
     validateOnMount: true,
@@ -22,9 +23,13 @@ export default function ForgotPassword() {
       Email: yup
         .string()
         .email("invalid email address")
-        .required("Please enter your old password"),
+        .required("Please enter your Email address"),
     }),
   });
+
+  useEffect(() => {
+   if(message === "okay") formik.resetForm()
+  },[message])
 
   if (!userLoading && user?.message === "User is logged in") {
     return <Navigate to="/" replace />;
