@@ -28,7 +28,7 @@ export default function ForgotPassword() {
   });
 
   useEffect(() => {
-   if(message?.message) formik.resetForm();
+   if(message?.message === "okay") formik.resetForm({Email:""});
   },[message])
 
   if (!userLoading && user?.message === "User is logged in") {
@@ -52,7 +52,7 @@ export default function ForgotPassword() {
           />
           <Button
             style={
-              loadingState === "loading" || loadingState === "submitting"
+              loadingState === "loading" || loadingState === "submitting" || !formik.isValid
                 ? "processing"
                 : "idle"
             }

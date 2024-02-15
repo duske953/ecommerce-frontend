@@ -44,7 +44,7 @@ const CheckoutForm = () => {
       },
       redirect: "if_required",
     });
-
+setPaymentLoading(false)
     if (result.error) {
       setPaymentLoading(false);
       updateToastify(
@@ -67,7 +67,7 @@ const CheckoutForm = () => {
     <Form className="payment-element" onSubmit={handleSubmit}>
       <PaymentElement />
       <Button
-        isDisabled={!stripe || !!paymentLoading}
+        isDisabled={!stripe || paymentLoading}
         nameClass="form"
         style={paymentLoading ? "processing" : "idle"}
         msg="submit"

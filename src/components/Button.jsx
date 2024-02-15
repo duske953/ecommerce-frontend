@@ -29,7 +29,7 @@ export function Button({
       type={type}
       onClick={onClick}
       style={{
-        backgroundColor: style === "idle" ? "#1c7ed6" : "#74c0fc",
+        backgroundColor: isDisabled && "#1c7ed6" || style === "idle" ? "#1c7ed6" : "#74c0fc",
         cursor: style === "idle" ? "pointer" : "default",
         pointerEvents: style === "idle" ? "auto" : "none",
       }}

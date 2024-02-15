@@ -45,7 +45,7 @@ export default function LoginRoute() {
           onBlur={formik.handleBlur}
           value={formik.values.Password}
         />
-        <Button msg="Login" isDisabled={!formik.isValid} nameClass="form" />
+        <Button msg="Login" isDisabled={!formik.isValid} nameClass="form"  />
         <div className="acc-info">
           <ButtonLink
             link="/forgot-password"
