@@ -1,7 +1,7 @@
 import axios from "axios";
 import useSwr from "swr";
 import useSWRImmutable from "swr/immutable";
-let url = "https://oek-ecommerce-backend.vercel.app/api/v1";
+let url = import.meta.env.VITE_BACKEND_URL
 
 // let url = "http://localhost:3000/api/v1";
 
