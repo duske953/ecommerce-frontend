@@ -12,7 +12,7 @@ export default function ForgotPassword() {
   const Fetcher = useFetcher();
   const formRef = useRef(null);
   const loadingState = Fetcher.state;
-  const {message} = useActionData()
+  const message = useActionData()
   const { user, userLoading, userError } = useUser();
   const formik = useFormik({
     validateOnMount: true,
@@ -28,7 +28,7 @@ export default function ForgotPassword() {
   });
 
   useEffect(() => {
-   if(message === "okay") formik.resetForm()
+   if(message?.message) formik.resetForm();
   },[message])
 
   if (!userLoading && user?.message === "User is logged in") {
