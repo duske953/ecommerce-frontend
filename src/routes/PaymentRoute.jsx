@@ -78,7 +78,7 @@ const CheckoutForm = () => {
 };
 
 const stripePromise = loadStripe(
-  "pk_test_51M0GgNBbIqUU47iSDEuvPtnxhMNzTdX7DuHpnve8FkM57UR2i91htSXTQCrYuctUJS9oNFMdRnmbcmTYqymvm68j00znxRoHBX"
+  `${import.meta.env.VITE_STRIPE_KEY}`
 );
 export default function PaymentRoute() {
   const { user, userLoading, userError } = useUser();

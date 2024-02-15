@@ -26,12 +26,12 @@ export default function CardCart(props) {
         "deleteProductFromCart"
       );
       const cartResponse = await mutate(
-        "https://oek-ecommerce-backend.vercel.app/api/v1/products/getProductsFromCart"
+        `${import.meta.env.VITE_BACKEND_URL}/products/getProductsFromCart`
       );
       if (cartResponse.message === "products from cart loaded")
         setDeleteItem(false);
       mutate(
-        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn"
+        `${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`
       );
       updateToastify(idToast, "Item removed from cart", "success");
     } catch (err) {

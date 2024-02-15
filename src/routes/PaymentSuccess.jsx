@@ -17,10 +17,10 @@ export default function PaymentSuccess() {
   useEffect(() => {
     if (data?.status === 200) {
       mutate(
-        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn"
+        `${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`
       );
       mutate(
-        "https://oek-ecommerce-backend.vercel.app/api/v1/products/getProductsFromCart"
+        `${import.meta.env.VITE_BACKEND_URL}/products/getProductsFromCart`
       );
     }
   }, [data]);

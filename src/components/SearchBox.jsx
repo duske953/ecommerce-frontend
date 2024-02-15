@@ -5,7 +5,6 @@ export default function SearchBox() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   function handleSubmit(event) {
-    console.log(searchParams);
   }
   return (
     <div className="input-box">
