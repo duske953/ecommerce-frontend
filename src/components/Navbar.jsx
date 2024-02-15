@@ -23,7 +23,7 @@ export default function Navbar() {
     try {
       e.preventDefault();
       await mutate(
-        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn",
+        `${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`,
         Logout()
       );
       updateToastify(id, "You've been logged out of your account");
