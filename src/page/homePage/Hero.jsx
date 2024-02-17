@@ -1,5 +1,5 @@
 import SearchBox from '../../components/SearchBox';
-import HeroImg from '../../assets/HeroImg.svg';
+import HeroImg from '../../assets/heroImg.svg';
 import Skeleton from 'react-loading-skeleton';
 export default function Hero({ state }) {
   return (
