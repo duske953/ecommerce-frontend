@@ -1,53 +1,54 @@
-import { useState } from "react";
-import { useSubmit, Link } from "react-router-dom";
-import { useUser } from "../hooks/swrhook";
-import { ButtonLink, Button } from "./Button";
-import { Logout } from "../utilities/utility";
-import { useSWRConfig } from "swr";
-import SearchField from "react-search-field";
-import { BsCart } from "react-icons/bs";
-import { BsList } from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
-import { navbarData } from "../utilities/navbardata";
-import Skeleton from "react-loading-skeleton";
-import { renderToastify, updateToastify } from "../utilities/toastify";
+import { useState } from 'react';
+import { useSubmit, Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../hooks/swrhook';
+import { ButtonLink, Button } from './Button';
+import { Logout } from '../utilities/utility';
+import { useSWRConfig } from 'swr';
+import SearchField from 'react-search-field';
+import { BsCart } from 'react-icons/bs';
+import { BsList } from 'react-icons/bs';
+import { AiOutlineClose } from 'react-icons/ai';
+import { navbarData } from '../utilities/navbardata';
+import Skeleton from 'react-loading-skeleton';
+import { renderToastify, updateToastify } from '../utilities/toastify';
 
 export default function Navbar() {
   const { mutate } = useSWRConfig();
   const submit = useSubmit();
+  const navigate = useNavigate();
   const [navActive, setNavActive] = useState(false);
   const { user, userLoading } = useUser();
-
   async function handleLogOut(e) {
-    const id = renderToastify("Logging you out...");
+    const id = renderToastify('Logging you out...');
     try {
       e.preventDefault();
       await mutate(
         `${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`,
         Logout()
       );
-      updateToastify(id, "You've been logged out of your account");
+      navigate('/');
+      updateToastify(id, "You've been logged out of your account", 'success');
     } catch (err) {
       updateToastify(
         id,
-        "Something went wrong while trying to log you out",
-        "error"
+        'Something went wrong while trying to log you out',
+        'error'
       );
     }
   }
 
   function handleInputEvent(value) {
     let formData = new FormData();
-    formData.append("q", value);
-    formData.append("page", 1);
+    formData.append('q', value);
+    formData.append('page', 1);
     submit(formData, {
-      action: "/products/search",
-      method: "get",
+      action: '/products/search',
+      method: 'get',
     });
   }
 
   function handleToggleNav(e) {
-    if (e.target.getAttribute("data-click") === "no-nav") return;
+    if (e.target.getAttribute('data-click') === 'no-nav') return;
     setNavActive(!navActive);
   }
 
@@ -75,7 +76,7 @@ export default function Navbar() {
               <Skeleton width={350} height={25} borderRadius="0.4rem" />
             ) : (
               <>
-                {" "}
+                {' '}
                 <li>
                   <ButtonLink link="/" title="Home" />
                 </li>
@@ -117,7 +118,7 @@ export default function Navbar() {
                     />
                   </li>
                 ) : (
-                  ""
+                  ''
                 )}
               </>
             )}
@@ -126,7 +127,7 @@ export default function Navbar() {
       </header>
       <div
         className={`navbar-section__nav-container ${
-          navActive ? "navbar-section__nav-container--active" : ""
+          navActive ? 'navbar-section__nav-container--active' : ''
         }`}
       >
         <div
@@ -145,7 +146,7 @@ export default function Navbar() {
                 key={el.title}
               >
                 <ButtonLink
-                  nameClass={"navbar-section__category-link"}
+                  nameClass={'navbar-section__category-link'}
                   link={el.link}
                   title={el.title}
                 />
@@ -161,7 +162,7 @@ export default function Navbar() {
       <div
         onClick={handleToggleNav}
         className={`navbar-section__nav-overlay${
-          navActive ? " navbar-section__nav-overlay--active" : " "
+          navActive ? ' navbar-section__nav-overlay--active' : ' '
         }`}
       ></div>
     </section>

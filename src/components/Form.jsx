@@ -1,18 +1,35 @@
-import { useUser } from "../hooks/swrhook";
-import { useSWRConfig } from "swr";
-import { loadingContext } from "../reactContext/loading";
-import { useFetcher, Navigate, useLocation } from "react-router-dom";
+import { useUser } from '../hooks/swrhook';
+import { useSWRConfig } from 'swr';
+import { loadingContext } from '../reactContext/loading';
+import {
+  useFetcher,
+  Navigate,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function Forms({ children, img, infoText, action }) {
   const fetcher = useFetcher();
+  const navigate = useNavigate();
   const { mutate } = useSWRConfig();
   const location = useLocation();
   const { user, isLoading, isError } = useUser();
-  const from = location?.state?.pathname || "/";
-  if (user?.message || fetcher?.data === "authenticated") {
-    mutate(`${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`);
-    return <Navigate to={from} replace={true} />;
-  }
+  const from = location?.state?.pathname || '/';
+
+  useEffect(() => {
+    async function IsUserLoggedIn() {
+      if (user?.message || fetcher?.data === 'authenticated') {
+        const user = await mutate(
+          `${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`
+        );
+        navigate(`${from}`, { replace: true });
+      }
+    }
+
+    IsUserLoggedIn();
+  }, [fetcher, user]);
+
   return (
     <section className="section-form">
       <div className="section-form__container">

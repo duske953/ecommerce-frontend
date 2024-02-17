@@ -1,14 +1,14 @@
-import { useNavigate, Navigate, useLocation } from "react-router-dom";
-import { useState, useRef } from "react";
-import { Rating } from "react-simple-star-rating";
-import Skeleton from "react-loading-skeleton";
-import { useSWRConfig } from "swr";
-import { Button } from "../../components/Button";
-import { useUser } from "../../hooks/swrhook";
-import { changeImageWidth } from "../../utilities/utility";
-import { sendRequestToBackend } from "../../utilities/utility";
-import { renderToastify, updateToastify } from "../../utilities/toastify";
-import { toast } from "react-toastify";
+import { useNavigate, Navigate, useLocation } from 'react-router-dom';
+import { useState, useRef } from 'react';
+import { Rating } from 'react-simple-star-rating';
+import Skeleton from 'react-loading-skeleton';
+import { useSWRConfig } from 'swr';
+import { Button } from '../../components/Button';
+import { useUser } from '../../hooks/swrhook';
+import { changeImageWidth } from '../../utilities/utility';
+import { sendRequestToBackend } from '../../utilities/utility';
+import { renderToastify, updateToastify } from '../../utilities/toastify';
+import { toast } from 'react-toastify';
 export default function ProductInfo(props) {
   const [btnAction, setBtnAction] = useState(false);
   const refId = useRef(null);
@@ -16,33 +16,31 @@ export default function ProductInfo(props) {
   const { user, isLoading, isError } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
-
+  console.log(props);
   async function handleAddToCart() {
     if (!user?.message) {
-      toast("You need to be logged in to perform this action", {
-        type: "warning",
+      toast('You need to be logged in to perform this action', {
+        type: 'warning',
       });
-      return navigate("/login", {
+      return navigate('/login', {
         state: location,
-        relative: "path",
+        relative: 'path',
       });
     }
     try {
-      refId.current = renderToastify("Adding to cart...");
+      refId.current = renderToastify('Adding to cart...');
       setBtnAction(true);
       await sendRequestToBackend(
-        "patch",
-        "products",
+        'patch',
+        'products',
         { id: props._id },
-        "addToCart"
+        'addToCart'
       );
       setBtnAction(false);
-      updateToastify(refId.current, "Product added to cart", "success");
-      await mutate(
-        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn"
-      );
+      updateToastify(refId.current, 'Product added to cart', 'success');
+      await mutate(`${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`);
     } catch (err) {
-      updateToastify(refId.current, err.response.data.message, "error");
+      updateToastify(refId.current, err.response.data.message, 'error');
       setBtnAction(false);
     }
   }
@@ -51,12 +49,12 @@ export default function ProductInfo(props) {
       <section className="product-info">
         <div className="product-info__container">
           <div className="product-info__img-box">
-            {props.state === "loading" ? (
+            {props.state === 'loading' ? (
               <Skeleton count={25} />
             ) : (
               <img
                 className="product-info__img"
-                src={changeImageWidth(props.image.slice(), "UL320", "UL660")}
+                src={changeImageWidth(props.image.slice(), 'UL320', 'UL660')}
                 alt={props.title}
               />
             )}
@@ -64,14 +62,14 @@ export default function ProductInfo(props) {
 
           <div className="product-info__details">
             <p className="product-info__category">
-              {props.state === "loading" ? (
+              {props.state === 'loading' ? (
                 <Skeleton />
               ) : (
                 props.categories[0].name
               )}
             </p>
             <h2 className="secondary-heading product-info__heading">
-              {props.state === "loading" ? <Skeleton /> : props.title}
+              {props.state === 'loading' ? <Skeleton /> : props.title}
             </h2>
             <div className="product-info__rating-box">
               <Rating
@@ -80,21 +78,24 @@ export default function ProductInfo(props) {
                 allowFraction={true}
               />
               <p className="product-info__rating">
-                {props.state === "loading" ? <Skeleton /> : props.rating}
+                {props.state === 'loading' ? <Skeleton /> : props.rating}
               </p>
             </div>
             {/* <p className="product-info__price">{`${props.price.symbol}${props.price.value}`}</p> */}
-            <div className="product-info__btns">
-              {props.state === "loading" ? (
+            <div className="product-info__action">
+              {props.state === 'loading' ? (
                 <Skeleton />
               ) : (
-                <Button
-                  onClick={handleAddToCart}
-                  msg="Add to cart"
-                  nameClass="primary-button"
-                  style={btnAction ? "processing" : "idle"}
-                  isDisabled={btnAction}
-                />
+                <>
+                  <Button
+                    onClick={handleAddToCart}
+                    msg="Add to cart"
+                    nameClass="primary-button"
+                    style={btnAction ? 'processing' : 'idle'}
+                    isDisabled={btnAction}
+                  />
+                  <p className="product-info__price">{props.price.name}</p>
+                </>
               )}
             </div>
           </div>

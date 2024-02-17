@@ -1,5 +1,5 @@
-@use "../abstracts/mixins" as m;
-@use "../abstracts/variables" as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
 .product-info {
   padding: v.$general-padding;
   border-bottom: 1px solid #222;
@@ -21,6 +21,10 @@
     color: v.$primary-blue-color;
     text-transform: uppercase;
   }
+
+  // &__action {
+  //   @include m.Flex(center, center);
+  // }
 
   &__img-box {
     height: 100%;
@@ -57,7 +61,14 @@
 
   &__rating-box {
     @include m.Flex(center);
+    @media (max-width: v.$media-break-4) {
+      justify-content: center;
+    }
     gap: 1.8rem;
+  }
+
+  &__price {
+    font-size: '2.4rem';
   }
 
   &__rating {

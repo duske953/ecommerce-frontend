@@ -1,14 +1,14 @@
-import "react-loading-skeleton/dist/skeleton.css";
-import Navbar from "../components/Navbar";
-import ProductInfo from "../page/productPage/productInfo";
-import Title from "../components/Title";
-import { ButtonLink } from "../components/Button";
-import { ScrollRestoration, useLoaderData } from "react-router-dom";
-import { ProductsBox } from "../components/products";
-import Err404 from "../components/Err404";
-import { useProduct } from "../hooks/swrhook";
-import NetworkError from "../components/NetworkError";
-import Footer from "../components/Footer";
+import 'react-loading-skeleton/dist/skeleton.css';
+import Navbar from '../components/Navbar';
+import ProductInfo from '../page/productPage/productInfo';
+import Title from '../components/Title';
+import { ButtonLink } from '../components/Button';
+import { ScrollRestoration, useLoaderData } from 'react-router-dom';
+import { ProductsBox } from '../components/products';
+import Err404 from '../components/Err404';
+import { useProduct } from '../hooks/swrhook';
+import NetworkError from '../components/NetworkError';
+import Footer from '../components/Footer';
 
 export default function ProductInfoRoute() {
   const params = useLoaderData();
@@ -16,7 +16,7 @@ export default function ProductInfoRoute() {
   const productInfo = productData?.data.product;
   const similarProducts = productData?.data.similarProduct;
 
-  if (productError?.message === "Network Error") return <NetworkError />;
+  if (productError?.message === 'Network Error') return <NetworkError />;
 
   if (productError?.response?.status === 404) {
     return <Err404 />;
@@ -30,7 +30,7 @@ export default function ProductInfoRoute() {
       <>
         <Navbar />
         <p className="p-lg abs-center">
-          {productError?.response?.data.message || "Something went wrong"}
+          {productError?.response?.data.message || 'Something went wrong'}
         </p>
         ;
       </>

@@ -1,24 +1,24 @@
-import { Navigate, useLoaderData, Form, useNavigate } from "react-router-dom";
+import { Navigate, useLoaderData, Form, useNavigate } from 'react-router-dom';
 import {
   Elements,
   PaymentElement,
   useStripe,
   useElements,
-} from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import Navbar from "../components/Navbar";
-import { useState } from "react";
-import Title from "../components/Title";
-import { useUser } from "../hooks/swrhook";
-import { Button } from "../components/Button";
-import Err404 from "../components/Err404";
-import { renderToastify, updateToastify } from "../utilities/toastify";
+} from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import Navbar from '../components/Navbar';
+import { useState } from 'react';
+import Title from '../components/Title';
+import { useUser } from '../hooks/swrhook';
+import { Button } from '../components/Button';
+import Err404 from '../components/Err404';
+import { renderToastify, updateToastify } from '../utilities/toastify';
 // import Footer from "../components/Footer";
-import { changeImageWidth, sendRequestToBackend } from "../utilities/utility";
-import NetworkError from "../components/NetworkError";
+import { changeImageWidth, sendRequestToBackend } from '../utilities/utility';
+import NetworkError from '../components/NetworkError';
 
 const appearance = {
-  theme: "night",
+  theme: 'night',
 };
 
 const CheckoutForm = () => {
@@ -36,28 +36,27 @@ const CheckoutForm = () => {
     }
 
     setPaymentLoading(true);
-    renderToastify("Processing order...");
+    renderToastify('Processing order...');
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
         return_url: `https://tech-freak.vercel.app/payment_success?id=${data.paymentIntent.metadata.productId}`,
       },
-      redirect: "if_required",
+      redirect: 'if_required',
     });
-setPaymentLoading(false)
     if (result.error) {
       setPaymentLoading(false);
       updateToastify(
-        renderToastify("Processing order..."),
+        renderToastify('Processing order...'),
         result.error.message,
-        "error"
+        'error'
       );
     } else {
       await sendRequestToBackend(
-        "post",
-        "users",
+        'post',
+        'users',
         { id: data.paymentIntent.metadata.productId },
-        "productPaid"
+        'productPaid'
       );
       navigate(`/payment_success?id=${data.paymentIntent.metadata.productId}`);
     }
@@ -66,24 +65,24 @@ setPaymentLoading(false)
   return (
     <Form className="payment-element" onSubmit={handleSubmit}>
       <PaymentElement />
-      <Button
-        isDisabled={!stripe || paymentLoading}
-        nameClass="form"
-        style={paymentLoading ? "processing" : "idle"}
-        msg="submit"
-        type="submit"
-      />
+      {stripe && (
+        <Button
+          isDisabled={!stripe || paymentLoading}
+          nameClass="form"
+          style={paymentLoading ? 'processing' : 'idle'}
+          msg="submit"
+          type="submit"
+        />
+      )}
     </Form>
   );
 };
 
-const stripePromise = loadStripe(
-  `${import.meta.env.VITE_STRIPE_KEY}`
-);
+const stripePromise = loadStripe(`${import.meta.env.VITE_STRIPE_KEY}`);
 export default function PaymentRoute() {
   const { user, userLoading, userError } = useUser();
   const data = useLoaderData();
-  if (data?.err?.message === "Network Error") return <NetworkError />;
+  if (data?.err?.message === 'Network Error') return <NetworkError />;
   if (data?.status === 404) {
     return (
       <>
@@ -93,7 +92,7 @@ export default function PaymentRoute() {
   }
   if (data.status === 401) return <Navigate to="/login" replace />;
   if (userLoading === false) {
-    if (user?.data.message === "Logged out" || !user) {
+    if (user?.data.message === 'Logged out' || !user) {
       return <Navigate to="/login" replace />;
     }
   }
@@ -138,8 +137,8 @@ export default function PaymentRoute() {
               className="section-payment__img"
               src={changeImageWidth(
                 data.paymentIntent.metadata.productImg,
-                "UL320",
-                "UL660"
+                'UL320',
+                'UL660'
               )}
               alt={data.paymentIntent.metadata.productTitle}
             />
@@ -149,7 +148,7 @@ export default function PaymentRoute() {
               <h2 className="section-payment__title">
                 {data.paymentIntent.metadata.productTitle
                   .slice(0, 15)
-                  .padEnd(18, "...")}
+                  .padEnd(18, '...')}
               </h2>
               <p className="section-payment__price">
                 {`$${data.paymentIntent.metadata.productPrice}`}

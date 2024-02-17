@@ -1,22 +1,26 @@
-import axios from "axios";
-import useSwr from "swr";
-import useSWRImmutable from "swr/immutable";
-let url = import.meta.env.VITE_BACKEND_URL
+import axios from 'axios';
+import useSwr from 'swr';
+import useSWRImmutable from 'swr/immutable';
+let url = import.meta.env.VITE_BACKEND_URL;
 
 // let url = "http://localhost:3000/api/v1";
-
 const fetcher = (url) =>
   axios.get(url, { withCredentials: true }).then((res) => res.data);
 
 export function useUser() {
-  const { data, error } = useSWRImmutable(`${url}/users/isLoggedIn`, fetcher, {
-    errorRetryCount: 1,
-    revalidateOnReconnect: true,
-  });
+  const { data, error, mutate } = useSWRImmutable(
+    `${url}/users/isLoggedIn`,
+    fetcher,
+    {
+      errorRetryCount: 1,
+      revalidateOnReconnect: true,
+    }
+  );
   return {
     user: data,
     userLoading: !error && !data,
     userError: error,
+    mutate,
   };
 }
 
