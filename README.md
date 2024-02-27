@@ -1,4 +1,4 @@
-## Tech Freak: Explore, Buy, Manage
+## Tech-Freak: Explore, Buy, Manage
 
 **1. Project Description:**
 
@@ -16,11 +16,18 @@ Tech Freak is a **real-world project** showcasing a fully functional e-commerce 
 
 It's recommended to use a **codespace** provided by your preferred cloud provider (e.g., GitHub Codespaces) instead of the manual local setup described above. This offers a pre-configured environment with all dependencies already installed, simplifying the development process.
 
-**4. Usage:**
+**4. Technologies:**
+* React ([https://react.dev/](https://react.dev/))
+* React Router ([https://reacttraining.com/react-router](https://reacttraining.com/react-router))
+* Vite ([https://vitejs.dev/](https://vitejs.dev/))
+* SWR ([https://github.com/vercel/swr](https://github.com/vercel/swr))
+* Sass ([https://sass-lang.com/](https://sass-lang.com/))
+
+**5. Usage:**
 
 **Accessing the application: Once set up, access the application through localhost (requires running the development server)**.
 
-**5. Features:**
+**6. Features:**
 
 * **Comprehensive Product Browsing:** Explore a diverse selection of tech products across various categories like laptops, smartphones, monitors, headphones, and accessories.
 * **User Management:**
@@ -38,9 +45,11 @@ It's recommended to use a **codespace** provided by your preferred cloud provide
     * Account confirmation reminder (optional).
 * **Shopping Cart Management:** Add desired products to your cart, manage quantities, and proceed to checkout seamlessly.
 
-**6. Important Note:**
+**7. Important Note:**
 
-This project is intended solely for **demonstration and portfolio purposes**. It **does not handle real-world transactions** and should not be used in a production environment.
+This project is intended solely for **demonstration purposes**. It **does not handle real-world transactions** and should not be used in a production environment.
 
 **Backend Repo**
-[Backend repo](https://github.com/duske953/Ecommerce-backend)
+[https://github.com/duske953/Ecommerce-backend](https://github.com/duske953/Ecommerce-backend)
+
+
