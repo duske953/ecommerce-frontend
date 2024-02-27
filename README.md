@@ -18,9 +18,9 @@ It's recommended to use a **codespace** provided by your preferred cloud provide
 
 **4. Technologies:**
 * React ([https://react.dev/](https://react.dev/))
-* React Router ([https://reacttraining.com/react-router](https://reacttraining.com/react-router))
+* React Router ([https://reactrouter.com/en/main](https://reactrouter.com/en/main))
 * Vite ([https://vitejs.dev/](https://vitejs.dev/))
-* SWR ([https://github.com/vercel/swr](https://github.com/vercel/swr))
+* SWR ([https://swr.vercel.app/](https://swr.vercel.app/))
 * Sass ([https://sass-lang.com/](https://sass-lang.com/))
 
 **5. Usage:**
