@@ -1,25 +1,25 @@
-import { useFormik } from "formik";
-import Title from "../components/Title";
-import * as yup from "yup";
-import { Button } from "../components/Button";
-import Form from "../components/Form";
-import Input from "../components/Input";
-import Navbar from "../components/Navbar";
-import { RenderError } from "../utilities/utility";
-import Footer from "../components/Footer";
-import LoginImg from "../assets/undraw_login_re_4vu2.svg";
-import { ButtonLink } from "../components/Button";
+import { useFormik } from 'formik';
+import Title from '../components/Title';
+import * as yup from 'yup';
+import { Button } from '../components/Button';
+import Form from '../components/Form';
+import Input from '../components/Input';
+import Navbar from '../components/Navbar';
+import { RenderError } from '../utilities/utility';
+import Footer from '../components/Footer';
+import LoginImg from '../assets/undraw_login_re_4vu2.svg';
+import { ButtonLink } from '../components/Button';
 
 export default function LoginRoute() {
   const formik = useFormik({
     validateOnMount: true,
     initialValues: {
-      Email: "",
-      Password: "",
+      Email: '',
+      Password: '',
     },
     validationSchema: yup.object({
-      Email: yup.string().email("please enter a correct email address"),
-      Password: yup.string().required("Please enter your password"),
+      Email: yup.string().email('please enter a correct email address'),
+      Password: yup.string().required('Please enter your password'),
     }),
   });
   return (
@@ -45,7 +45,7 @@ export default function LoginRoute() {
           onBlur={formik.handleBlur}
           value={formik.values.Password}
         />
-        <Button msg="Login" isDisabled={!formik.isValid} nameClass="form"  />
+        <Button msg="Login" isDisabled={!formik.isValid} nameClass="form" />
         <div className="acc-info">
           <ButtonLink
             link="/forgot-password"
@@ -54,7 +54,6 @@ export default function LoginRoute() {
           />
         </div>
       </Form>
-      <Footer />
     </>
   );
 }
