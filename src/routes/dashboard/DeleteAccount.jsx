@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { useUser } from "../../hooks/swrhook";
-import { useFetcher, useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import { toast } from "react-toastify";
-import { useSWRConfig } from "swr";
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
-import { renderToastify, updateToastify } from "../../utilities/toastify";
-import { sendRequestToBackend } from "../../utilities/utility";
-import { Button } from "../../components/Button";
-import { RenderError } from "../../utilities/utility";
-import Input from "../../components/Input";
+import { useState } from 'react';
+import { useUser } from '../../hooks/swrhook';
+import { useFetcher, useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { toast } from 'react-toastify';
+import { useSWRConfig } from 'swr';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import { renderToastify, updateToastify } from '../../utilities/toastify';
+import { sendRequestToBackend } from '../../utilities/utility';
+import { Button } from '../../components/Button';
+import { RenderError } from '../../utilities/utility';
+import Input from '../../components/Input';
 export default function DeleteAccount() {
   const navigate = useNavigate();
   const { user } = useUser();
   const [Modal, setModal] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [inputError, setInputError] = useState(false);
   const { mutate } = useSWRConfig();
   function handleChange(e) {
@@ -25,24 +25,22 @@ export default function DeleteAccount() {
 
   async function handleConfirmDelete() {
     try {
-      if (value !== "DELETE ACCOUNT PERMANENTLY") return setInputError(true);
+      if (value !== 'DELETE ACCOUNT PERMANENTLY') return setInputError(true);
       const response = await sendRequestToBackend(
-        "delete",
-        "users",
+        'delete',
+        'users',
         {
           Email: formik.values.Email,
           Password: formik.values.Password,
         },
-        "deleteAccount"
+        'deleteAccount'
       );
-      toast("Account deleted...", { type: "success" });
+      toast('Account deleted...', { type: 'success' });
       setModal(!Modal);
-      mutate(
-        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn"
-      );
-      window.location.href = "/";
+      mutate(`${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`);
+      window.location.href = '/';
     } catch (err) {
-      toast(err.response.data.message, { type: "error" });
+      toast(err.response.data.message, { type: 'error' });
     }
   }
 
@@ -50,35 +48,35 @@ export default function DeleteAccount() {
   const formik = useFormik({
     validateOnMount: true,
     initialValues: {
-      Email: "",
-      Password: "",
+      Email: '',
+      Password: '',
     },
     validationSchema: yup.object({
       Email: yup
         .string()
-        .email("Invalid email address")
-        .required("Please enter Email address"),
-      Password: yup.string().required("Please enter your Password"),
+        .email('Invalid email address')
+        .required('Please enter Email address'),
+      Password: yup.string().required('Please enter your Password'),
     }),
   });
 
   async function handleDelete() {
-    const id = renderToastify("Processing");
+    const id = renderToastify('Processing');
     try {
       const response = await sendRequestToBackend(
-        "delete",
-        "users",
+        'delete',
+        'users',
         {
           Email: formik.values.Email,
           Password: formik.values.Password,
-          status: "pendingDelete",
+          status: 'pendingDelete',
         },
-        "deleteAccount"
+        'deleteAccount'
       );
       setModal(!Modal);
-      updateToastify(id, "Action required", "info");
+      updateToastify(id, 'Action required', 'info');
     } catch (err) {
-      updateToastify(id, err.response.data.message, "error");
+      updateToastify(id, err.response.data.message, 'error');
     }
   }
   return (
@@ -145,7 +143,7 @@ export default function DeleteAccount() {
               style="idle"
               onClick={handleConfirmDelete}
             />
-            {inputError ? <p>Incorrect...</p> : ""}
+            {inputError ? <p>Incorrect...</p> : ''}
           </div>
         </Popup>
       </Fetcher.Form>
