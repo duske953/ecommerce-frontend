@@ -1,11 +1,11 @@
-import { useFormik } from "formik";
-import { useSWRConfig } from "swr";
-import { useUser } from "../../hooks/swrhook";
-import { useFetcher, Navigate, useNavigate } from "react-router-dom";
-import { Button } from "../../components/Button";
-import Input from "../../components/Input";
-import * as yup from "yup";
-import { useEffect } from "react";
+import { useFormik } from 'formik';
+import { useSWRConfig } from 'swr';
+import { useUser } from '../../hooks/swrhook';
+import { useFetcher, Navigate, useNavigate } from 'react-router-dom';
+import { Button } from '../../components/Button';
+import Input from '../../components/Input';
+import * as yup from 'yup';
+import { useEffect } from 'react';
 export default function userInfo() {
   const { mutate } = useSWRConfig();
   const { user, userLoading } = useUser();
@@ -14,10 +14,8 @@ export default function userInfo() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (Fetcher.data?.msg === "ok") {
-      mutate(
-        "https://oek-ecommerce-backend.vercel.app/api/v1/users/isLoggedIn"
-      );
+    if (Fetcher.data?.msg === 'ok') {
+      mutate(`${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`);
     }
     navigate(Fetcher.data?.path);
   }, [Fetcher.data]);
@@ -26,15 +24,15 @@ export default function userInfo() {
     validateOnMount: true,
     enableReinitialize: true,
     initialValues: {
-      Name: `${userLoading ? "" : user.data.user.Name}`,
-      Email: `${userLoading ? "" : user.data.user.Email}`,
+      Name: `${userLoading ? '' : user.data.user.Name}`,
+      Email: `${userLoading ? '' : user.data.user.Email}`,
     },
     validationSchema: yup.object({
-      Name: yup.string().required("please enter a correct email address"),
+      Name: yup.string().required('please enter a correct email address'),
       Email: yup
         .string()
-        .required("Please enter your email address")
-        .email("Please enter a valid email address"),
+        .required('Please enter your email address')
+        .email('Please enter a valid email address'),
     }),
   });
 
@@ -63,14 +61,14 @@ export default function userInfo() {
             msg="Change details"
             nameClass="primary-button"
             style={
-              loadingState === "loading" || loadingState === "submitting"
-                ? "processing"
-                : "idle"
+              loadingState === 'loading' || loadingState === 'submitting'
+                ? 'processing'
+                : 'idle'
             }
             isDisabled={
               !formik.isValid ||
-              Fetcher.state === "submitting" ||
-              Fetcher.state === "loading"
+              Fetcher.state === 'submitting' ||
+              Fetcher.state === 'loading'
             }
           />
         </div>
