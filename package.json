@@ -1,7 +1,9 @@
 {
   "name": "ecommercefullstack",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "An ecommerce web app",
+  "author": "Eloho Kennedy"
   "proxy": "http://localhost:3000/api/v1",
   "scripts": {
     "dev": "vite",
