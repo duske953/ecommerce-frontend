@@ -7,7 +7,7 @@ import {
 } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Navbar from '../components/Navbar';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Title from '../components/Title';
 import { useUser } from '../hooks/swrhook';
 import { Button } from '../components/Button';
@@ -16,6 +16,7 @@ import { renderToastify, updateToastify } from '../utilities/toastify';
 // import Footer from "../components/Footer";
 import { changeImageWidth, sendRequestToBackend } from '../utilities/utility';
 import NetworkError from '../components/NetworkError';
+import { toast } from 'react-toastify';
 
 const appearance = {
   theme: 'night',
@@ -23,6 +24,7 @@ const appearance = {
 
 const CheckoutForm = () => {
   const data = useLoaderData();
+  const idRef = useRef();
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -30,13 +32,10 @@ const CheckoutForm = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (!stripe || !elements) {
       return;
     }
-
     setPaymentLoading(true);
-    renderToastify('Processing order...');
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
@@ -46,12 +45,17 @@ const CheckoutForm = () => {
     });
     if (result.error) {
       setPaymentLoading(false);
-      updateToastify(
-        renderToastify('Processing order...'),
-        result.error.message,
-        'error'
-      );
+      if (result.error.type !== 'validation_error') {
+        idRef.current = toast(result.error.message, {
+          type: 'error',
+          autoClose: 5000,
+          toastId: 'paymentLoading',
+          hideProgressBar: true,
+        });
+      }
     } else {
+      toast.dismiss(idRef.current);
+      const id = renderToastify('Processing order...');
       await sendRequestToBackend(
         'post',
         'users',
@@ -69,7 +73,7 @@ const CheckoutForm = () => {
         <Button
           isDisabled={!stripe || paymentLoading}
           nameClass="form"
-          style={paymentLoading ? 'processing' : 'idle'}
+          style={paymentLoading || !stripe ? 'processing' : 'idle'}
           msg="submit"
           type="submit"
         />
