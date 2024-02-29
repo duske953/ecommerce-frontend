@@ -16,7 +16,6 @@ export default function ProductInfo(props) {
   const { user, isLoading, isError } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(props);
   async function handleAddToCart() {
     if (!user?.message) {
       toast('You need to be logged in to perform this action', {
