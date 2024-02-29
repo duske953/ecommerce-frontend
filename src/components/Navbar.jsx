@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSubmit, Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/swrhook';
-import { ButtonLink, Button } from './Button';
+import { ButtonLink } from './Button';
 import { Logout } from '../utilities/utility';
 import { useSWRConfig } from 'swr';
 import SearchField from 'react-search-field';
@@ -26,7 +26,6 @@ export default function Navbar() {
         `${import.meta.env.VITE_BACKEND_URL}/users/isLoggedIn`,
         Logout()
       );
-      navigate('/');
       updateToastify(id, "You've been logged out of your account", 'success');
     } catch (err) {
       updateToastify(
