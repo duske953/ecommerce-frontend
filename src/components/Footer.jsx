@@ -6,7 +6,7 @@ export default function Footer() {
           Create with love by{" "}
           <a
             className="section-footer__link"
-            href="https://eloho-ken.b4a.app/"
+            href="https://eloho.vercel.app/"
             target="_blank"
             rel="noopener"
           >
